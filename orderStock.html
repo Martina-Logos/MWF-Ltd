@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MWF Ltd - Order Stock</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/public/css/orderStock.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="logo">
+                <h2>Mayondo Wood & Furniture Ltd</h2>
+            </div>
+            
+            <ul class="nav-links">
+                <li><a href="manager.html"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="stock.html"><i class="fas fa-boxes"></i> Stock</a></li>
+                <li class="active"><a href="orderStock.html"><i class="fas fa-truck-loading"></i> Order Stock</a></li>
+                <li><a href="#"><i class="fas fa-truck"></i> Suppliers</a></li>
+                <li><a href="user.html"><i class="fas fa-users"></i> Users</a></li>
+                <li><a href="reports.html"><i class="fas fa-chart-bar"></i> Reports</a></li>
+       
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            <div class="header">
+                <h1>Order Stock</h1>
+                <div class="user-info">
+                    <div>
+                        <h3>Tee Mwangi</h3>
+                        <p>Manager</p>
+                    </div>
+                    <img src="/public/imgs/Beauty.png" alt="User">
+                </div>
+            </div>
+
+            <!-- Form Container -->
+            <div class="form-container">
+                <div class="form-header">
+                    <h2>Create Purchase Order</h2>
+                    <p>Order new stock from your suppliers</p>
+                </div>
+
+                <form id="orderForm">
+                    <!-- Supplier Information Section -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-truck"></i> Supplier Information</h3>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="supplier" class="required">Select Supplier</label>
+                                <select id="supplier" name="supplier" required>
+                                    <option value="">Select a Supplier</option>
+                                    <option value="1">Timberland Suppliers</option>
+                                    <option value="2">Premium Woods Ltd</option>
+                                    <option value="3">Forest Products Co.</option>
+                                    <option value="4">Hardwood Importers</option>
+                                    <option value="5">Furniture Components Inc.</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="orderDate" class="required">Order Date</label>
+                                <input type="date" id="orderDate" name="orderDate" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="expectedDate">Expected Delivery Date</label>
+                                <input type="date" id="expectedDate" name="expectedDate">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="paymentTerms" class="required">Payment Terms</label>
+                                <select id="paymentTerms" name="paymentTerms" required>
+                                    <option value="">Select Terms</option>
+                                    <option value="net15">Net 15 Days</option>
+                                    <option value="net30" selected>Net 30 Days</option>
+                                    <option value="net60">Net 60 Days</option>
+                                    <option value="cod">Cash on Delivery</option>
+                                    <option value="prepaid">Prepaid</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <!-- Supplier Details (displayed when a supplier is selected) -->
+                        <div class="supplier-info" id="supplierDetails" style="display: none;">
+                            <h4>Supplier Details</h4>
+                            <div class="supplier-details">
+                                <div class="supplier-detail">
+                                    <label>Contact Person</label>
+                                    <span id="supplierContact">-</span>
+                                </div>
+                                <div class="supplier-detail">
+                                    <label>Phone Number</label>
+                                    <span id="supplierPhone">-</span>
+                                </div>
+                                <div class="supplier-detail">
+                                    <label>Email Address</label>
+                                    <span id="supplierEmail">-</span>
+                                </div>
+                                <div class="supplier-detail">
+                                    <label>Address</label>
+                                    <span id="supplierAddress">-</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Order Items Section -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-box"></i> Order Items</h3>
+                        
+                        <table class="order-items">
+                            <thead>
+                                <tr>
+                                    <th width="40%">Product</th>
+                                    <th width="15%">Quantity</th>
+                                    <th width="15%">Unit Cost ($)</th>
+                                    <th width="20%">Total ($)</th>
+                                    <th width="10%">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="itemsTableBody">
+                                <tr>
+                                    <td>
+                                        <select class="product-select" name="product[]" required>
+                                            <option value="">Select Product</option>
+                                            <option value="1">Mahogany Timber Plank</option>
+                                            <option value="2">Oak Wood Beam</option>
+                                            <option value="3">Teak Hardwood</option>
+                                            <option value="4">Pine Wood</option>
+                                            <option value="5">Plywood Sheet</option>
+                                        </select>
+                                    </td>
+                                    <td><input type="number" name="quantity[]" min="1" value="1" required></td>
+                                    <td><input type="number" name="cost[]" step="0.01" min="0" value="0.00" required></td>
+                                    <td>$0.00</td>
+                                    <td class="item-actions">
+                                        <button type="button" class="btn-remove"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <button type="button" id="addItemBtn" class="btn btn-outline" style="margin-top: 15px;">
+                            <i class="fas fa-plus"></i> Add Item
+                        </button>
+                    </div>
+
+                    <!-- Shipping Information -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-shipping-fast"></i> Shipping Information</h3>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="shippingMethod">Shipping Method</label>
+                                <select id="shippingMethod" name="shippingMethod">
+                                    <option value="">Select Method</option>
+                                    <option value="pickup">Supplier Pickup</option>
+                                    <option value="delivery" selected>Supplier Delivery</option>
+                                    <option value="courier">Courier Service</option>
+                                    <option value="freight">Freight Service</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="shippingCost">Shipping Cost ($)</label>
+                                <input type="number" id="shippingCost" name="shippingCost" step="0.01" min="0" value="0.00">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="notes">Order Notes</label>
+                            <textarea id="notes" name="notes" placeholder="Any special instructions for this order..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Summary Section -->
+                    <div class="order-summary">
+                        <div class="summary-row">
+                            <span>Subtotal:</span>
+                            <span>$0.00</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Shipping Cost:</span>
+                            <span id="shippingDisplay">$0.00</span>
+                        </div>
+                        <div class="summary-row total">
+                            <span>Order Total:</span>
+                            <span id="orderTotal">$0.00</span>
+                        </div>
+                    </div>
+
+                    <!-- Form Actions -->
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-outline">
+                            <i class="fas fa-times"></i> Cancel
+                        </button>
+                        <button type="button" class="btn btn-primary">
+                            <i class="fas fa-print"></i> Print PO
+                        </button>
+                        <button type="submit" class="btn btn-success">
+                            <i class="fas fa-paper-plane"></i> Submit Order
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set today's date as default for order date
+            const today = new Date();
+            const expectedDate = new Date();
+            expectedDate.setDate(today.getDate() + 7);
+            
+            document.getElementById('orderDate').value = today.toISOString().split('T')[0];
+            document.getElementById('expectedDate').value = expectedDate.toISOString().split('T')[0];
+            
+            // Supplier data
+            const suppliers = {
+                1: {
+                    contact: "Robert Johnson",
+                    phone: "+1 (555) 123-4567",
+                    email: "robert@timberlandsuppliers.com",
+                    address: "123 Timber Ave, Forestville, WA 98001"
+                },
+                2: {
+                    contact: "Sarah Williams",
+                    phone: "+1 (555) 234-5678",
+                    email: "sarah@premiumwoods.com",
+                    address: "456 Oak Street, Woodland, CA 95695"
+                },
+                3: {
+                    contact: "Michael Brown",
+                    phone: "+1 (555) 345-6789",
+                    email: "michael@forestproducts.com",
+                    address: "789 Pine Road, Lumberton, OR 97034"
+                },
+                4: {
+                    contact: "Jennifer Davis",
+                    phone: "+1 (555) 456-7890",
+                    email: "jennifer@hardwoodimporters.com",
+                    address: "321 Cedar Lane, Maplewood, MN 55109"
+                },
+                5: {
+                    contact: "David Wilson",
+                    phone: "+1 (555) 567-8901",
+                    email: "david@furniturecomponents.com",
+                    address: "654 Elm Drive, Furnishville, NC 27510"
+                }
+            };
+            
+            // Show supplier details when a supplier is selected
+            document.getElementById('supplier').addEventListener('change', function() {
+                const supplierId = this.value;
+                const detailsDiv = document.getElementById('supplierDetails');
+                
+                if (supplierId && suppliers[supplierId]) {
+                    const supplier = suppliers[supplierId];
+                    document.getElementById('supplierContact').textContent = supplier.contact;
+                    document.getElementById('supplierPhone').textContent = supplier.phone;
+                    document.getElementById('supplierEmail').textContent = supplier.email;
+                    document.getElementById('supplierAddress').textContent = supplier.address;
+                    detailsDiv.style.display = 'block';
+                } else {
+                    detailsDiv.style.display = 'none';
+                }
+            });
+            
+            // Add new item row
+            document.getElementById('addItemBtn').addEventListener('click', function() {
+                const tbody = document.getElementById('itemsTableBody');
+                const newRow = document.createElement('tr');
+                
+                newRow.innerHTML = `
+                    <td>
+                        <select class="product-select" name="product[]" required>
+                            <option value="">Select Product</option>
+                            <option value="1">Mahogany Timber Plank</option>
+                            <option value="2">Oak Wood Beam</option>
+                            <option value="3">Teak Hardwood</option>
+                            <option value="4">Pine Wood</option>
+                            <option value="5">Plywood Sheet</option>
+                        </select>
+                    </td>
+                    <td><input type="number" name="quantity[]" min="1" value="1" required></td>
+                    <td><input type="number" name="cost[]" step="0.01" min="0" value="0.00" required></td>
+                    <td>$0.00</td>
+                    <td class="item-actions">
+                        <button type="button" class="btn-remove"><i class="fas fa-trash"></i></button>
+                    </td>
+                `;
+                
+                tbody.appendChild(newRow);
+                
+                // Add event listeners to new inputs
+                const quantityInput = newRow.querySelector('input[name="quantity[]"]');
+                const costInput = newRow.querySelector('input[name="cost[]"]');
+                
+                quantityInput.addEventListener('input', calculateRowTotal);
+                costInput.addEventListener('input', calculateRowTotal);
+                
+                // Add event listener to remove button
+                newRow.querySelector('.btn-remove').addEventListener('click', function() {
+                    tbody.removeChild(newRow);
+                    calculateTotal();
+                });
+            });
+            
+            // Remove item row
+            document.querySelectorAll('.btn-remove').forEach(button => {
+                button.addEventListener('click', function() {
+                    const row = this.closest('tr');
+                    row.parentNode.removeChild(row);
+                    calculateTotal();
+                });
+            });
+            
+            // Calculate row total when quantity or cost changes
+            function calculateRowTotal() {
+                const row = this.closest('tr');
+                const quantity = parseFloat(row.querySelector('input[name="quantity[]"]').value) || 0;
+                const cost = parseFloat(row.querySelector('input[name="cost[]"]').value) || 0;
+                const total = quantity * cost;
+                
+                row.querySelector('td:nth-child(4)').textContent = '$' + total.toFixed(2);
+                calculateTotal();
+            }
+            
+            // Calculate order total
+            function calculateTotal() {
+                let subtotal = 0;
+                
+                document.querySelectorAll('#itemsTableBody tr').forEach(row => {
+                    const totalCell = row.querySelector('td:nth-child(4)').textContent;
+                    const value = parseFloat(totalCell.replace('$', '')) || 0;
+                    subtotal += value;
+                });
+                
+                const shippingCost = parseFloat(document.getElementById('shippingCost').value) || 0;
+                const total = subtotal + shippingCost;
+                
+                document.querySelector('.summary-row:nth-child(1) span:nth-child(2)').textContent = '$' + subtotal.toFixed(2);
+                document.getElementById('shippingDisplay').textContent = '$' + shippingCost.toFixed(2);
+                document.getElementById('orderTotal').textContent = '$' + total.toFixed(2);
+            }
+            
+            // Add event listeners to existing quantity and cost inputs
+            document.querySelectorAll('input[name="quantity[]"], input[name="cost[]"]').forEach(input => {
+                input.addEventListener('input', calculateRowTotal);
+            });
+            
+            // Update total when shipping cost changes
+            document.getElementById('shippingCost').addEventListener('input', calculateTotal);
+            
+            // Form submission
+            document.getElementById('orderForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Basic validation
+                const supplier = document.getElementById('supplier').value;
+                const orderDate = document.getElementById('orderDate').value;
+                const paymentTerms = document.getElementById('paymentTerms').value;
+                
+                if (!supplier || !orderDate || !paymentTerms) {
+                    alert('Please fill in all required fields');
+                    return;
+                }
+                
+                // Check if at least one item is added
+                const items = document.querySelectorAll('#itemsTableBody tr');
+                if (items.length === 0) {
+                    alert('Please add at least one item to the order');
+                    return;
+                }
+                
+                // Check if all items have valid costs
+                let validItems = true;
+                document.querySelectorAll('input[name="cost[]"]').forEach(input => {
+                    if (parseFloat(input.value) <= 0) {
+                        validItems = false;
+                    }
+                });
+                
+                if (!validItems) {
+                    alert('Please enter a valid cost for all items');
+                    return;
+                }
+                
+                // In a real application, you would send the form data to the server here
+                alert('Purchase order created successfully!');
+                // this.reset();
+            });
+            
+            // Initialize calculations
+            calculateTotal();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MWF Ltd - User Management</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/public/css/user.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="logo">
+                <h2>Mayondo Wood & Furniture Ltd</h2>
+            </div>
+            
+            <ul class="nav-links">
+                <li><a href="manager.html"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="stock.html"><i class="fas fa-boxes"></i> Stock</a></li>
+                <li><a href="orderStock.html"><i class="fas fa-truck-loading"></i> Order Stock</a></li>
+                <li class="active"><a href="user.html"><i class="fas fa-users"></i> Users</a></li>
+                <li><a href="reports.html"><i class="fas fa-chart-bar"></i> Reports</a></li>
+           
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            <div class="header">
+                <h1>User Management</h1>
+                <div class="user-info">
+                    <div>
+                        <h3>Tee Mwangi</h3>
+                        <p>Manager</p>
+                    </div>
+                    <img src="/public/imgs/Beauty.png" alt="User">
+                </div>
+            </div>
+
+            <!-- Tabs -->
+            <div class="tabs">
+                <div class="tab active" data-tab="users-list">Users List</div>
+                <div class="tab" data-tab="add-user">Add New User</div>
+            </div>
+
+            <!-- Users List Tab -->
+            <div class="tab-content active" id="users-list">
+                <div class="form-container">
+                    <div class="form-header">
+                        <h2>System Users</h2>
+                        <p>Manage all user accounts in the system</p>
+                    </div>
+
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Status</th>
+                                <th>Last Login</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="user-info" style="justify-content: flex-start;">
+                                        <img src="https://xsgames.co/randomusers/avatar.php?g=male&1" alt="User" style="width: 40px; height: 40px; margin-right: 10px;">
+                                        <div>
+                                            <div>John Manager</div>
+                                            <small style="color: var(--gray);">ID: USR-001</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>john.manager@mwf.com</td>
+                                <td><span class="role manager">Manager</span></td>
+                                <td><span class="status active">Active</span></td>
+                                <td>Today, 09:24 AM</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-btn btn-edit" data-user="1"><i class="fas fa-edit"></i> Edit</button>
+                                        <button class="action-btn btn-delete" data-user="1" disabled><i class="fas fa-trash"></i> Delete</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="user-info" style="justify-content: flex-start;">
+                                        <img src="https://xsgames.co/randomusers/avatar.php?g=female&2" alt="User" style="width: 40px; height: 40px; margin-right: 10px;">
+                                        <div>
+                                            <div>Sarah Johnson</div>
+                                            <small style="color: var(--gray);">ID: USR-002</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>sarah.j@mwf.com</td>
+                                <td><span class="role attendant">Sales Attendant</span></td>
+                                <td><span class="status active">Active</span></td>
+                                <td>Yesterday, 03:45 PM</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-btn btn-edit" data-user="2"><i class="fas fa-edit"></i> Edit</button>
+                                        <button class="action-btn btn-delete" data-user="2"><i class="fas fa-trash"></i> Delete</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="user-info" style="justify-content: flex-start;">
+                                        <img src="https://xsgames.co/randomusers/avatar.php?g=male&3" alt="User" style="width: 40px; height: 40px; margin-right: 10px;">
+                                        <div>
+                                            <div>Michael Brown</div>
+                                            <small style="color: var(--gray);">ID: USR-003</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>michael.b@mwf.com</td>
+                                <td><span class="role attendant">Warehouse Attendant</span></td>
+                                <td><span class="status active">Active</span></td>
+                                <td>Today, 08:15 AM</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-btn btn-edit" data-user="3"><i class="fas fa-edit"></i> Edit</button>
+                                        <button class="action-btn btn-delete" data-user="3"><i class="fas fa-trash"></i> Delete</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="user-info" style="justify-content: flex-start;">
+                                        <img src="https://xsgames.co/randomusers/avatar.php?g=female&4" alt="User" style="width: 40px; height: 40px; margin-right: 10px;">
+                                        <div>
+                                            <div>Emily Wilson</div>
+                                            <small style="color: var(--gray);">ID: USR-004</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>emily.w@mwf.com</td>
+                                <td><span class="role attendant">Sales Attendant</span></td>
+                                <td><span class="status inactive">Inactive</span></td>
+                                <td>Nov 5, 2023</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-btn btn-edit" data-user="4"><i class="fas fa-edit"></i> Edit</button>
+                                        <button class="action-btn btn-delete" data-user="4"><i class="fas fa-trash"></i> Delete</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="user-info" style="justify-content: flex-start;">
+                                        <img src="https://xsgames.co/randomusers/avatar.php?g=male&5" alt="User" style="width: 40px; height: 40px; margin-right: 10px;">
+                                        <div>
+                                            <div>David Lee</div>
+                                            <small style="color: var(--gray);">ID: USR-005</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>david.l@mwf.com</td>
+                                <td><span class="role attendant">Warehouse Attendant</span></td>
+                                <td><span class="status active">Active</span></td>
+                                <td>Today, 07:30 AM</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="action-btn btn-edit" data-user="5"><i class="fas fa-edit"></i> Edit</button>
+                                        <button class="action-btn btn-delete" data-user="5"><i class="fas fa-trash"></i> Delete</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Add User Tab -->
+            <div class="tab-content" id="add-user">
+                <div class="form-container">
+                    <div class="form-header">
+                        <h2>Add New User</h2>
+                        <p>Create a new user account for system access</p>
+                    </div>
+
+                    <form id="userForm">
+                        <!-- Personal Information Section -->
+                        <div class="form-section">
+                            <h3><i class="fas fa-user"></i> Personal Information</h3>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="firstName" class="required">First Name</label>
+                                    <input type="text" id="firstName" name="firstName" required placeholder="e.g., John">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="lastName" class="required">Last Name</label>
+                                    <input type="text" id="lastName" name="lastName" required placeholder="e.g., Doe">
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="email" class="required">Email Address</label>
+                                    <input type="email" id="email" name="email" required placeholder="e.g., johndoe@mwf.com">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="phone">Phone Number</label>
+                                    <input type="tel" id="phone" name="phone" placeholder="e.g., +1 (555) 123-4567">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Account Information Section -->
+                        <div class="form-section">
+                            <h3><i class="fas fa-key"></i> Account Information</h3>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="username" class="required">Username</label>
+                                    <input type="text" id="username" name="username" required placeholder="e.g., johndoe">
+                                    <p class="form-hint">Will be used for login</p>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="password" class="required">Password</label>
+                                    <input type="password" id="password" name="password" required placeholder="Enter a strong password">
+                                    <p class="form-hint">Minimum 8 characters with letters and numbers</p>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="role" class="required">User Role</label>
+                                    <select id="role" name="role" required>
+                                        <option value="">Select Role</option>
+                                        <option value="manager">Manager</option>
+                                        <option value="attendant">Attendant</option>
+                                    </select>
+                                    <p class="form-hint">Managers have full access, attendants have limited access</p>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="status" class="required">Account Status</label>
+                                    <select id="status" name="status" required>
+                                        <option value="active" selected>Active</option>
+                                        <option value="inactive">Inactive</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Permissions Section -->
+                        <div class="form-section">
+                            <h3><i class="fas fa-shield-alt"></i> Permissions</h3>
+                            
+                            <div class="form-group">
+                                <label>System Access</label>
+                                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 10px; margin-top: 10px;">
+                                    <div>
+                                        <input type="checkbox" id="inventoryAccess" name="inventoryAccess" checked>
+                                        <label for="inventoryAccess">Inventory Management</label>
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" id="salesAccess" name="salesAccess" checked>
+                                        <label for="salesAccess">Sales & Invoicing</label>
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" id="reportsAccess" name="reportsAccess">
+                                        <label for="reportsAccess">Reports</label>
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" id="userManagementAccess" name="userManagementAccess">
+                                        <label for="userManagementAccess">User Management</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Form Actions -->
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-outline" id="resetForm">
+                                <i class="fas fa-times"></i> Cancel
+                            </button>
+                            <button type="submit" class="btn btn-success">
+                                <i class="fas fa-user-plus"></i> Create User
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div class="modal" id="deleteModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Confirm Deletion</h2>
+                <span class="close">&times;</span>
+            </div>
+            <p>Are you sure you want to delete the user <strong id="deleteUserName">John Doe</strong>? This action cannot be undone.</p>
+            <div class="modal-actions">
+                <button class="btn btn-outline" id="cancelDelete">Cancel</button>
+                <button class="btn btn-danger" id="confirmDelete">Delete User</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tab functionality
+            const tabs = document.querySelectorAll('.tab');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const tabId = tab.getAttribute('data-tab');
+                    
+                    // Update active tab
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    
+                    // Show active tab content
+                    tabContents.forEach(content => {
+                        content.classList.remove('active');
+                        if (content.id === tabId) {
+                            content.classList.add('active');
+                        }
+                    });
+                });
+            });
+            
+            // Form validation
+            document.getElementById('userForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Basic validation
+                const firstName = document.getElementById('firstName').value;
+                const lastName = document.getElementById('lastName').value;
+                const email = document.getElementById('email').value;
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+                const role = document.getElementById('role').value;
+                
+                if (!firstName || !lastName || !email || !username || !password || !role) {
+                    alert('Please fill in all required fields');
+                    return;
+                }
+                
+                // Password strength validation
+                if (password.length < 8) {
+                    alert('Password must be at least 8 characters long');
+                    return;
+                }
+                
+                // Email validation
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    alert('Please enter a valid email address');
+                    return;
+                }
+                
+                // In a real application, you would send the form data to the server here
+                alert('User created successfully!');
+                this.reset();
+            });
+            
+            // Reset form
+            document.getElementById('resetForm').addEventListener('click', function() {
+                document.getElementById('userForm').reset();
+            });
+            
+            // Delete user functionality
+            const deleteModal = document.getElementById('deleteModal');
+            const deleteButtons = document.querySelectorAll('.btn-delete');
+            const closeModal = document.querySelector('.close');
+            const cancelDelete = document.getElementById('cancelDelete');
+            const confirmDelete = document.getElementById('confirmDelete');
+            
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const userId = this.getAttribute('data-user');
+                    const userName = this.closest('tr').querySelector('.user-info div:first-child').textContent;
+                    
+                    document.getElementById('deleteUserName').textContent = userName;
+                    deleteModal.style.display = 'flex';
+                    
+                    // Store the user ID for deletion
+                    confirmDelete.setAttribute('data-user', userId);
+                });
+            });
+            
+            // Close modal
+            closeModal.addEventListener('click', function() {
+                deleteModal.style.display = 'none';
+            });
+            
+            cancelDelete.addEventListener('click', function() {
+                deleteModal.style.display = 'none';
+            });
+            
+            confirmDelete.addEventListener('click', function() {
+                const userId = this.getAttribute('data-user');
+                
+                // In a real application, you would send a delete request to the server here
+                alert(`User with ID ${userId} has been deleted`);
+                deleteModal.style.display = 'none';
+                
+                // Remove the user from the table (for demo purposes)
+                const userRow = document.querySelector(`.btn-delete[data-user="${userId}"]`).closest('tr');
+                userRow.remove();
+            });
+            
+            // Edit user functionality
+            const editButtons = document.querySelectorAll('.btn-edit');
+            
+            editButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const userId = this.getAttribute('data-user');
+                    const userRow = this.closest('tr');
+                    const userName = userRow.querySelector('.user-info div:first-child').textContent;
+                    
+                    // In a real application, you would fetch user data and populate the form
+                    // For this demo, we'll just switch to the add user tab and show a message
+                    document.querySelector('.tab[data-tab="add-user"]').click();
+                    alert(`Edit mode for user: ${userName} (ID: ${userId}). User data would be loaded into the form.`);
+                });
+            });
+            
+            // Close modal if clicked outside
+            window.addEventListener('click', function(e) {
+                if (e.target === deleteModal) {
+                    deleteModal.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MWF Ltd - Manager Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="/public/css/manager.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="logo">
+                <h2>Mayondo Wood & Furniture Ltd </h2>
+            </div>
+            
+            <ul class="nav-links">
+                <li class="active"><a href="manager.html"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="stock.html"><i class="fas fa-boxes"></i> Stock</a></li>
+                <li><a href="orderStock.html"><i class="fas fa-truck"></i> Order Stock</a></li>
+                <li><a href="#"><i class="fas fa-truck"></i> Suppliers</a></li>
+                <li><a href="user.html"><i class="fas fa-users"></i> Users</a></li>
+                <li><a href="reports.html"><i class="fas fa-chart-bar"></i> Reports</a></li>
+            
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            <div class="header">
+               
+                <div class="user-info">
+                    <div>
+                        <h3>Tee Mwangi</h3>
+                        <p>Manager</p>
+                    </div>
+                    <img src="/public/imgs/Beauty.png" alt="User">
+                </div>
+            </div>
+
+            <!-- Key Metrics -->
+            <div class="dashboard-widgets">
+                <div class="widget">
+                    <div class="widget-header">
+                        <h3>Today's Sales</h3>
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <div class="kpi-value">$12,458</div>
+                    <div class="kpi-change">
+                        <i class="fas fa-arrow-up"></i> 12.5% from yesterday
+                    </div>
+                </div>
+                
+                <div class="widget">
+                    <div class="widget-header">
+                        <h3>Inventory Value</h3>
+                        <i class="fas fa-boxes"></i>
+                    </div>
+                    <div class="kpi-value">$187,920</div>
+                    <div class="kpi-change">
+                        <i class="fas fa-arrow-down"></i> 3.2% from last week
+                    </div>
+                </div>
+                
+                <div class="widget">
+                    <div class="widget-header">
+                        <h3>Pending Orders</h3>
+                        <i class="fas fa-clipboard-list"></i>
+                    </div>
+                    <div class="kpi-value">24</div>
+                    <div class="kpi-change negative">
+                        <i class="fas fa-arrow-up"></i> 4 more than yesterday
+                    </div>
+                </div>
+                
+                <div class="widget">
+                    <div class="widget-header">
+                        <h3>Low Stock Items</h3>
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div class="kpi-value">8</div>
+                    <div class="kpi-change negative">
+                        <i class="fas fa-arrow-up"></i> Needs immediate attention
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts -->
+            <div class="charts">
+                <div class="chart-container">
+                    <div class="widget-header">
+                        <h3>Sales Overview</h3>
+                    </div>
+                    <canvas id="salesChart"></canvas>
+                </div>
+                
+                <div class="chart-container">
+                    <div class="widget-header">
+                        <h3>Product Categories</h3>
+                    </div>
+                    <canvas id="categoryChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Tables -->
+            <div class="data-tables">
+                <div class="chart-container">
+                    <div class="widget-header">
+                        <h3>Recent Transactions</h3>
+                        <button class="btn btn-primary">View All</button>
+                    </div>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Customer</th>
+                                <th>Product</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>BuildIT Constructions</td>
+                                <td>Timber (Hardwood)</td>
+                                <td>$2,450</td>
+                                <td><span class="status high">Completed</span></td>
+                            </tr>
+                            <tr>
+                                <td>Home Furniture Ltd</td>
+                                <td>Office Desks</td>
+                                <td>$3,850</td>
+                                <td><span class="status medium">Processing</span></td>
+                            </tr>
+                            <tr>
+                                <td>City Wood Dealers</td>
+                                <td>Softwood Planks</td>
+                                <td>$1,230</td>
+                                <td><span class="status high">Completed</span></td>
+                            </tr>
+                            <tr>
+                                <td>Designer Homes</td>
+                                <td>Dining Tables</td>
+                                <td>$4,200</td>
+                                <td><span class="status low">Pending</span></td>
+                            </tr>
+                            <tr>
+                                <td>QuickBuild Ltd</td>
+                                <td>Poles & Beams</td>
+                                <td>$1,875</td>
+                                <td><span class="status high">Completed</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="chart-container">
+                    <div class="widget-header">
+                        <h3>Low Stock Alert</h3>
+                        <button class="btn btn-accent">Order Now</button>
+                    </div>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Current Stock</th>
+                                <th>Required</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Mahogany Planks</td>
+                                <td>42 units</td>
+                                <td>200 units</td>
+                                <td><button class="btn btn-primary">Order</button></td>
+                            </tr>
+                            <tr>
+                                <td>Oak Timber</td>
+                                <td>35 units</td>
+                                <td>150 units</td>
+                                <td><button class="btn btn-primary">Order</button></td>
+                            </tr>
+                            <tr>
+                                <td>Chair Legs</td>
+                                <td>120 units</td>
+                                <td>300 units</td>
+                                <td><button class="btn btn-primary">Order</button></td>
+                            </tr>
+                            <tr>
+                                <td>Drawer Handles</td>
+                                <td>85 units</td>
+                                <td>200 units</td>
+                                <td><button class="btn btn-primary">Order</button></td>
+                            </tr>
+                            <tr>
+                                <td>4x4 Beams</td>
+                                <td>28 units</td>
+                                <td>100 units</td>
+                                <td><button class="btn btn-primary">Order</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="widget">
+                <div class="widget-header">
+                    <h3>Quick Actions</h3>
+                </div>
+                <div class="quick-actions">
+                    <div class="action-btn">
+                        <i class="fas fa-plus-circle"></i>
+                        <span>Add New Product</span>
+                    </div>
+                    <div class="action-btn">
+                        <i class="fas fa-clipboard-list"></i>
+                        <span>Generate Report</span>
+                    </div>
+                    <div class="action-btn">
+                        <i class="fas fa-truck-loading"></i>
+                        <span>Receive Stock</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sales Chart
+        const salesCtx = document.getElementById('salesChart').getContext('2d');
+        const salesChart = new Chart(salesCtx, {
+            type: 'line',
+            data: {
+                labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                datasets: [{
+                    label: 'Sales ($)',
+                    data: [8500, 12500, 9800, 12458, 11000, 7500, 9200],
+                    borderColor: '#3498db',
+                    backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                    tension: 0.4,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: false
+                    }
+                }
+            }
+        });
+
+        // Category Chart
+        const categoryCtx = document.getElementById('categoryChart').getContext('2d');
+        const categoryChart = new Chart(categoryCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Timber', 'Poles', 'Hardwood', 'Softwood', 'Furniture'],
+                datasets: [{
+                    data: [25, 15, 20, 15, 25],
+                    backgroundColor: [
+                        '#3498db',
+                        '#2ecc71',
+                        '#e67e22',
+                        '#e74c3c',
+                        '#9b59b6'
+                    ]
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

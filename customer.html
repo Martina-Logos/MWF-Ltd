@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MWF Ltd - Add Customer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/public/css/customer.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="logo">
+                <h2>Mayondo Wood & Furniture Ltd</h2>
+            </div>
+            
+            <ul class="nav-links">
+                <li><a href="salesAgent.html"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="sales.html"><i class="fas fa-cash-register"></i> Record Sale</a></li>
+                <li><a href="receipt.html"><i class="fas fa-receipt"></i> Generate Receipt</a></li>
+                <li class="active"><a href="customer.html"><i class="fas fa-user-plus"></i> Add Customer</a></li>
+                <li><a href="invoice.html"><i class="fas fa-file-invoice-dollar"></i> Invoices</a></li>
+                <!-- <li><a href="#"><i class="fas fa-boxes"></i> Inventory Check</a></li>
+                <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li> -->
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            <div class="header">
+                <h1>Add New Customer</h1>
+                <div class="user-info">
+                    <div>
+                        <h3>Mugerwa Rollins</h3>
+                        <p>Sales Attendant</p>
+                    </div>
+                    <img src="/public/imgs/salesAgent.jpg" alt="User">
+                </div>
+            </div>
+
+            <!-- Form Container -->
+            <div class="form-container">
+                <div class="form-header">
+                    <h2>Register New Customer</h2>
+                    <p>Add a new business customer to the MWF Ltd database</p>
+                </div>
+
+                <form id="customerForm">
+                    <!-- Customer Type Section -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-building"></i> Customer Type</h3>
+                        
+                        <div class="customer-type-selector">
+                            <div class="customer-type selected" data-type="business">
+                                <i class="fas fa-hard-hat"></i>
+                                <h4>Construction Company</h4>
+                                <p>Building & construction businesses</p>
+                            </div>
+                            <div class="customer-type" data-type="dealer">
+                                <i class="fas fa-warehouse"></i>
+                                <h4>Furniture Dealer</h4>
+                                <p>Wood and furniture retailers</p>
+                            </div>
+                            <div class="customer-type" data-type="manufacturer">
+                                <i class="fas fa-industry"></i>
+                                <h4>Manufacturer</h4>
+                                <p>Furniture and wood product makers</p>
+                            </div>
+                            <div class="customer-type" data-type="other">
+                                <i class="fas fa-briefcase"></i>
+                                <h4>Other Business</h4>
+                                <p>Other B2B customers</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Basic Information Section -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-info-circle"></i> Basic Information</h3>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="companyName" class="required">Company Name</label>
+                                <input type="text" id="companyName" name="companyName" required placeholder="e.g., BuildIT Constructions Ltd">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="businessType" class="required">Business Type</label>
+                                <select id="businessType" name="businessType" required>
+                                    <option value="">Select Business Type</option>
+                                    <option value="construction" selected>Building & Construction</option>
+                                    <option value="furniture_dealer">Furniture Dealer</option>
+                                    <option value="manufacturer">Manufacturer</option>
+                                    <option value="contractor">Contractor</option>
+                                    <option value="retailer">Retailer</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="taxId">Tax ID / VAT Number</label>
+                                <input type="text" id="taxId" name="taxId" placeholder="e.g., VAT-123456789">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="customerSince">Customer Since</label>
+                                <input type="date" id="customerSince" name="customerSince">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Information Section -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-address-book"></i> Contact Information</h3>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="contactPerson" class="required">Primary Contact Person</label>
+                                <input type="text" id="contactPerson" name="contactPerson" required placeholder="e.g., Robert Johnson">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="contactTitle">Contact Title</label>
+                                <input type="text" id="contactTitle" name="contactTitle" placeholder="e.g., Procurement Manager">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="phone" class="required">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" required placeholder="e.g., +1 (555) 123-4567">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" name="email" placeholder="e.g., contact@company.com">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Address Information Section -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-map-marker-alt"></i> Address Information</h3>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="streetAddress" class="required">Street Address</label>
+                                <input type="text" id="streetAddress" name="streetAddress" required placeholder="e.g., 123 Construction Avenue">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="city" class="required">City</label>
+                                <input type="text" id="city" name="city" required placeholder="e.g., Buildington">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="state">State/Province</label>
+                                <input type="text" id="state" name="state" placeholder="e.g., California">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="postalCode">Postal Code</label>
+                                <input type="text" id="postalCode" name="postalCode" placeholder="e.g., 90210">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="country" class="required">Country</label>
+                            <input type="text" id="country" name="country" required placeholder="e.g., United States">
+                        </div>
+                    </div>
+
+                    <!-- Business Details Section -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-chart-line"></i> Business Details</h3>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="paymentTerms" class="required">Payment Terms</label>
+                                <select id="paymentTerms" name="paymentTerms" required>
+                                    <option value="">Select Payment Terms</option>
+                                    <option value="cod">Cash on Delivery</option>
+                                    <option value="net7">Net 7 Days</option>
+                                    <option value="net15">Net 15 Days</option>
+                                    <option value="net30" selected>Net 30 Days</option>
+                                    <option value="net60">Net 60 Days</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="creditLimit">Credit Limit ($)</label>
+                                <input type="number" id="creditLimit" name="creditLimit" step="0.01" min="0" placeholder="0.00">
+                                <p class="form-hint">Set a credit limit for this customer</p>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="preferredProducts">Preferred Products/Categories</label>
+                            <select id="preferredProducts" name="preferredProducts" multiple style="height: 120px;">
+                                <option value="timber">Timber</option>
+                                <option value="poles">Poles</option>
+                                <option value="hardwood">Hardwood</option>
+                                <option value="softwood">Softwood</option>
+                                <option value="furniture">Furniture</option>
+                                <option value="office_furniture">Office Furniture</option>
+                                <option value="home_furniture">Home Furniture</option>
+                            </select>
+                            <p class="form-hint">Hold Ctrl/Cmd to select multiple options</p>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="notes">Additional Notes</label>
+                            <textarea id="notes" name="notes" placeholder="Any additional information about this customer..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Form Actions -->
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-outline" id="resetForm">
+                            <i class="fas fa-times"></i> Cancel
+                        </button>
+                        <button type="submit" class="btn btn-success">
+                            <i class="fas fa-user-plus"></i> Add Customer
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set today's date as default for customer since
+            const today = new Date();
+            document.getElementById('customerSince').value = today.toISOString().split('T')[0];
+            
+            // Customer type selection
+            const customerTypes = document.querySelectorAll('.customer-type');
+            
+            customerTypes.forEach(type => {
+                type.addEventListener('click', function() {
+                    // Remove selected class from all types
+                    customerTypes.forEach(t => t.classList.remove('selected'));
+                    // Add selected class to clicked type
+                    this.classList.add('selected');
+                    
+                    // Update business type based on selection
+                    const selectedType = this.getAttribute('data-type');
+                    const businessTypeSelect = document.getElementById('businessType');
+                    
+                    // Map customer type to business type options
+                    const typeMap = {
+                        'business': 'construction',
+                        'dealer': 'furniture_dealer',
+                        'manufacturer': 'manufacturer',
+                        'other': 'other'
+                    };
+                    
+                    if (typeMap[selectedType]) {
+                        businessTypeSelect.value = typeMap[selectedType];
+                    }
+                });
+            });
+            
+            // Form validation
+            document.getElementById('customerForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Basic validation
+                const companyName = document.getElementById('companyName').value;
+                const businessType = document.getElementById('businessType').value;
+                const contactPerson = document.getElementById('contactPerson').value;
+                const phone = document.getElementById('phone').value;
+                const streetAddress = document.getElementById('streetAddress').value;
+                const city = document.getElementById('city').value;
+                const country = document.getElementById('country').value;
+                const paymentTerms = document.getElementById('paymentTerms').value;
+                
+                if (!companyName || !businessType || !contactPerson || !phone || 
+                    !streetAddress || !city || !country || !paymentTerms) {
+                    alert('Please fill in all required fields');
+                    return;
+                }
+                
+                // Phone validation (basic)
+                const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
+                if (!phoneRegex.test(phone.replace(/[\s\-\(\)]/g, ''))) {
+                    alert('Please enter a valid phone number');
+                    return;
+                }
+                
+                // Email validation (if provided)
+                const email = document.getElementById('email').value;
+                if (email) {
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(email)) {
+                        alert('Please enter a valid email address');
+                        return;
+                    }
+                }
+                
+                // In a real application, you would send the form data to the server here
+                alert('Customer added successfully!');
+                this.reset();
+                
+                // Reset customer since date to today
+                document.getElementById('customerSince').value = today.toISOString().split('T')[0];
+            });
+            
+            // Reset form
+            document.getElementById('resetForm').addEventListener('click', function() {
+                if (confirm('Are you sure you want to cancel? All unsaved changes will be lost.')) {
+                    document.getElementById('customerForm').reset();
+                    // Reset customer since date to today
+                    document.getElementById('customerSince').value = today.toISOString().split('T')[0];
+                    // Reset customer type selection
+                    customerTypes.forEach(t => t.classList.remove('selected'));
+                    document.querySelector('.customer-type[data-type="business"]').classList.add('selected');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
