@@ -1,68 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MWF Business Management System - Sign In</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-        <link rel="stylesheet" href="/public/css/login.css">    
-</head>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/public/css/login.css" />
+  </head>
 
-<body>
-    <div class="login-container">
-        <div class="brand-section">
-            <div class="logo-container">
-                <img src="/public/imgs/BrownLogo.png" width="150" height="150" class="rounded-image" alt="MWF Logo">
-                <h1 class="brand-title">Mayondo Management</h1>
-                <p class="brand-subtitle">Business System</p>
-            </div>
-            
-           
-        </div>
-        
-        <div class="form-section">
-            <h2 class="welcome-title">Welcome Back!</h2>
-            <p class="welcome-subtitle">Sign in to your account</p>
-            
-            <div class="glass-form">
-                <form action="/login" method="post" id="glassForm">
-                    <div class="form-group">
-                        <label for="email" class="form-label">Email Address</label>
-                        <input type="email" name="name" id="email" class="form-control" placeholder="Enter your email" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="password" class="form-label">Password</label>
-                        <div class="password-container">
-                            <input type="password" name="password" id="password" class="form-control" placeholder="Enter your password" required>
-                            <button type="button" class="toggle-password" id="togglePassword">
-                                <i class="far fa-eye"></i>
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <div class="form-options">
-                        <div class="remember-me">
-                            <input type="checkbox" id="remember">
-                            <label for="remember">Remember me</label>
-                        </div>
-                        <a href="#" class="forgot-password">Forgot Password?</a>
-                    </div>
-                    
-                    <button type="submit" class="btn-login">Sign In</button>
-                </form>
-                <p id="errorMessage"></p>
-            </div>
-            
-            <div class="signup-link">
-                Don't have an account? <a href="#">Contact Administrator</a>
-            </div>
-        </div>
+  <body>
+    <h1>Welcome!</h1> 
+    <img
+      src="/public/imgs/BrownLogo.png"
+      width="200px"
+      height="200px"
+      class="rounded-image"
+    />
+    <br /><br />
+    <div class="form">
+      <form action="/login" method="post" id="glassForm">
+        <h4>Email</h4>
+        <input name="name" type="text" id="email" />
+        <br />
+        <h4>Password</h4>
+        <input name="password" type="password" id="password" />
+        <br />
+        <button type="submit">Submit</button>
+      </form>
+      <p id="errorMessage" style="color: red; display: none"></p>
     </div>
+    
+    <script src="/public/javascript/login.js"></script>
+  </body>
+</html>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
+
+
+
+
+
+
+
+<!-- document.addEventListener('DOMContentLoaded', function() {
             const togglePassword = document.getElementById('togglePassword');
             const passwordInput = document.getElementById('password');
             const loginForm = document.getElementById('glassForm');
@@ -146,7 +130,4 @@
                     window.location.href = 'manager.html';
                 }, 1500);
             }
-        });
-    </script>
-</body>
-</html>
+        }); -->
