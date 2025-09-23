@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="/public/css/manager.css">
+</head>
+<body>
+     <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="logo">
+                <h2>Mayondo Wood & Furniture Ltd </h2>
+            </div>
+            
+            <ul class="nav-links">
+                <li class="active"><a href="manager.html"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="stock.html"><i class="fas fa-boxes"></i> Record Stock</a></li>
+                <li><a href="orderStock.html"><i class="fas fa-truck"></i> Order Stock</a></li>
+                <li><a href="user.html"><i class="fas fa-users"></i> Users</a></li>
+                <li><a href="reports.html"><i class="fas fa-chart-bar"></i> Reports</a></li>
+            
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            <div class="header">
+                <h3>Reports</h3>
+                <div class="user-info">
+                    <div>
+                        <h3>Tee Mwangi</h3>
+                        <p>Manager</p>
+                    </div>
+                    <img src="/public/imgs/Beauty.png" alt="User">
+                </div>
+            </div>
+
+                    <!-- Main Content -->
+        <div class="main-content">
+            <!-- Page Header -->
+            <div class="page-header">
+                <h1 class="page-title"><i class="fas fa-chart-bar"></i> Reports & Analytics</h1>
+                <div class="header-actions">
+                    <button class="btn btn-outline-primary">
+                        <i class="fas fa-file-export"></i> Export
+                    </button>
+                    <button class="btn btn-primary">
+                        <i class="fas fa-print"></i> Print Report
+                    </button>
+                </div>
+            </div>
+
+            <!-- Report Controls -->
+            <div class="report-controls">
+                <div class="control-row">
+                    <div>
+                        <label class="form-label">Report Type</label>
+                        <select class="form-select" id="reportType">
+                            <option value="sales">Sales Report</option>
+                            <option value="inventory">Inventory Report</option>
+                            <option value="financial">Financial Report</option>
+                            <option value="customer">Customer Report</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="form-label">Date Range</label>
+                        <select class="form-select" id="dateRange">
+                            <option value="today">Today</option>
+                            <option value="week">This Week</option>
+                            <option value="month" selected>This Month</option>
+                            <option value="quarter">This Quarter</option>
+                            <option value="year">This Year</option>
+                            <option value="custom">Custom Range</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="form-label">Product Category</label>
+                        <select class="form-select" id="productCategory">
+                            <option value="all">All Products</option>
+                            <option value="wood">Wood Products</option>
+                            <option value="furniture">Furniture</option>
+                            <option value="timber">Timber</option>
+                        </select>
+                    </div>
+                    <div style="display: flex; align-items: flex-end;">
+                        <button class="btn btn-primary w-100" id="generateReport">
+                            <i class="fas fa-sync-alt"></i> Generate Report
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="stats-container">
+                <div class="stat-card">
+                    <div class="stat-icon icon-revenue">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>$24,560</h3>
+                        <p>Total Revenue</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon icon-orders">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>128</h3>
+                        <p>Total Orders</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon icon-inventory">
+                        <i class="fas fa-boxes"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>356</h3>
+                        <p>Items in Stock</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon icon-transport">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>$1,228</h3>
+                        <p>Transport Fees</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Table Section -->
+            <div class="table-card">
+                <div class="table-header">
+                    <h3 class="table-title">Recent Sales</h3>
+                    <div class="table-actions">
+                        <button class="btn btn-sm btn-outline-primary">
+                            <i class="fas fa-filter"></i> Filter
+                        </button>
+                        <button class="btn btn-sm btn-outline-primary">
+                            <i class="fas fa-download"></i> Export
+                        </button>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Date</th>
+                                <th>Customer</th>
+                                <th>Product</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>#ORD-001</td>
+                                <td>Oct 12, 2023</td>
+                                <td>BuildMax Constructions</td>
+                                <td>Timber (50 units)</td>
+                                <td>$2,500.00</td>
+                                <td><span class="badge badge-success">Completed</span></td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline-primary">View</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#ORD-002</td>
+                                <td>Oct 11, 2023</td>
+                                <td>Home Comfort Furniture</td>
+                                <td>Office Chairs (10 units)</td>
+                                <td>$1,200.00</td>
+                                <td><span class="badge badge-success">Completed</span></td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline-primary">View</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#ORD-003</td>
+                                <td>Oct 10, 2023</td>
+                                <td>Prime Builders Ltd</td>
+                                <td>Poles (30 units)</td>
+                                <td>$900.00</td>
+                                <td><span class="badge badge-warning">Processing</span></td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline-primary">View</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#ORD-004</td>
+                                <td>Oct 09, 2023</td>
+                                <td>WoodWorks Inc</td>
+                                <td>Hardwood (40 units)</td>
+                                <td>$3,200.00</td>
+                                <td><span class="badge badge-success">Completed</span></td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline-primary">View</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#ORD-005</td>
+                                <td>Oct 08, 2023</td>
+                                <td>City Furniture</td>
+                                <td>Dining Tables (5 units)</td>
+                                <td>$2,500.00</td>
+                                <td><span class="badge badge-danger">Pending Delivery</span></td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline-primary">View</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize charts
+            initCharts();
+            
+            // Generate report button functionality
+            document.getElementById('generateReport').addEventListener('click', function() {
+                const btn = this;
+                const originalText = btn.innerHTML;
+                
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating...';
+                btn.disabled = true;
+                
+                // Simulate API call
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+                    
+                    // Show success message
+                    alert('Report generated successfully!');
+                }, 1500);
+            });
+            
+            // Initialize charts
+            function initCharts() {
+                // Category Chart
+                const categoryCtx = document.getElementById('categoryChart').getContext('2d');
+                new Chart(categoryCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Timber', 'Poles', 'Hardwood', 'Furniture', 'Softwood'],
+                        datasets: [{
+                            data: [30, 15, 25, 20, 10],
+                            backgroundColor: [
+                                '#2c3e50',
+                                '#3498db',
+                                '#e67e22',
+                                '#27ae60',
+                                '#9b59b6'
+                            ],
+                            borderWidth: 0
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'bottom'
+                            }
+                        }
+                    }
+                });
+                
+                // Sales Chart
+                const salesCtx = document.getElementById('salesChart').getContext('2d');
+                new Chart(salesCtx, {
+                    type: 'line',
+                    data: {
+                        labels: ['Oct 1', 'Oct 5', 'Oct 10', 'Oct 15', 'Oct 20', 'Oct 25', 'Oct 30'],
+                        datasets: [{
+                            label: 'Daily Revenue',
+                            data: [1200, 1900, 1500, 2500, 2200, 3000, 2800],
+                            borderColor: '#3498db',
+                            backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                            tension: 0.3,
+                            fill: true
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>

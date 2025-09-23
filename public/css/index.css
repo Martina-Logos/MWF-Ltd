@@ -1,0 +1,69 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f5f0e6;
+  color: #333;
+}
+
+.intro {
+  text-align: center;
+  padding: 4rem 2rem 2rem;
+  background-color: #fff;
+}
+
+.intro h1 {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+.container section div {
+  text-align: center;
+}
+
+.cherry {
+  width: 150px;
+  height: 150px;
+  border-radius: 80%;
+  object-fit: cover;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  margin-bottom: 15px;
+}
+
+/* Tagline and SignIn link */
+.container p {
+  font-size: 1rem;
+  margin-bottom: 10px;
+  color: #5a4632;
+}
+
+.container h4 a {
+  text-decoration: none;
+  color: #8b5e3c;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.container h4 a:hover {
+  color: #3e2f1c;
+}
+
+.cherry {
+  border-radius: 150px;
+}
+
+.footer {
+  text-align: center;
+  padding: 2rem;
+  background-color: #565819;
+  font-size: 0.9rem;
+  color: white;
+}
+
