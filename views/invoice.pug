@@ -1,0 +1,179 @@
+meta(charset="UTF-8")
+meta(name="viewport", content="width=device-width,initial-scale=1")
+title MWF Ltd - Create Invoice
+link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css")
+link(rel="stylesheet", href="/public/css/invoice.css")
+.container
+  //  Sidebar 
+  .sidebar
+    .logo
+      h2 Mayondo Wood & Furniture Ltd
+    ul.nav-links
+      li
+        a(href="/salesAgent")
+          i.fas.fa-home
+          |  Dashboard
+      li
+        a(href="/sales")
+          i.fas.fa-boxes
+          |  Record Sale
+      li.active
+        a(href="/invoice")
+          i.fas.fa-file-invoice-dollar
+          |  Invoices
+      li
+        a(href="/receipt")
+          i.fas.fa-truck
+          |  Receipts
+      li
+        a(href="#")
+          i.fas.fa-chart-bar
+          |  Reports
+  //  Main Content 
+  .main-content
+    //  Header 
+    .header
+      h1 Create Invoice
+      .user-info
+        div
+          h3 Tee Mwangi
+          p Manager
+        img(src="/imgs/salesAgent.jpg", alt="User")
+    //  Form Container 
+    .form-container
+      .form-header
+        h2 Create New Invoice
+        p Generate a professional invoice for your customer
+      form#invoiceForm(action="/invoice" method="post")
+        //  Customer Information Section 
+        .form-section
+          h3
+            i.fas.fa-user
+            |  Customer Information
+          .form-row
+            .form-group
+              label.required(for="customerName") Customer Name
+              input#customerName(type="text", name="customerName", required, placeholder="e.g., BuildIT Constructions")
+            .form-group
+              label(for="customerContact") Contact Person
+              input#customerContact(type="text", name="customerContact", placeholder="Name of contact person")
+          .form-row
+            .form-group
+              label(for="customerAddress") Address
+              input#customerAddress(type="text", name="customerAddress", placeholder="Customer\'s address")
+            .form-group
+              label(for="customerPhone") Phone Number
+              input#customerPhone(type="tel", name="customerPhone", placeholder="Customer\'s phone number")
+        //  Invoice Details Section 
+        .form-section
+          h3
+            i.fas.fa-file-invoice
+            |  Invoice Details
+          .form-row
+            .form-group
+              label(for="invoiceNumber") Invoice Number
+              input#invoiceNumber(type="text", name="invoiceNumber", value="INV-2023-0085", readonly)
+            .form-group
+              label.required(for="invoiceDate") Invoice Date
+              input#invoiceDate(type="date", name="invoiceDate", required, value="2023-11-15")
+            .form-group
+              label.required(for="dueDate") Due Date
+              input#dueDate(type="date", name="dueDate", required, value="2023-11-29")
+          .form-row
+            .form-group
+              label.required(for="salesAgent") Sales Agent
+              input#salesAgent(type="text", name="salesAgent", required, value="John Manager", readonly)
+            .form-group
+              label.required(for="paymentMethod") Payment Method
+              select#paymentMethod(name="paymentMethod", required)
+                option(value) Select Method
+                option(value="cash") Cash
+                option(value="cheque") Cheque
+                option(value="bank_transfer", selected) Bank Transfer
+                option(value="bank_overdraft") Bank Overdraft
+        //  Invoice Items Section 
+        .form-section
+          h3
+            i.fas.fa-box
+            |  Items
+          table.invoice-items
+            thead
+              tr
+                th(width="40%") Product
+                th(width="15%") Quantity
+                th(width="15%") Unit Price ($)
+                th(width="20%") Total ($)
+                th(width="10%") Actions
+            tbody#itemsTableBody
+              tr
+                td
+                  select.product-select(name="product[]", required)
+                    option(value) Select Product
+                    option(value="1", selected) Mahogany Timber Plank
+                    option(value="2") Oak Wood Beam
+                    option(value="3") Teak Hardwood
+                    option(value="4") Office Desk
+                    option(value="5") Dining Table
+                td
+                  input(type="number", name="quantity[]", min="1", value="20", required)
+                td
+                  input(type="number", name="price[]", step="0.01", min="0", value="125.00", required)
+                td $2,500.00
+                td.item-actions
+                  button.btn-remove(type="button")
+                    i.fas.fa-trash
+              tr
+                td
+                  select.product-select(name="product[]", required)
+                    option(value) Select Product
+                    option(value="1") Mahogany Timber Plank
+                    option(value="2", selected) Oak Wood Beam
+                    option(value="3") Teak Hardwood
+                    option(value="4") Office Desk
+                    option(value="5") Dining Table
+                td
+                  input(type="number", name="quantity[]", min="1", value="10", required)
+                td
+                  input(type="number", name="price[]", step="0.01", min="0", value="85.50", required)
+                td $855.00
+                td.item-actions
+                  button.btn-remove(type="button")
+                    i.fas.fa-trash
+          button#addItemBtn.btn.btn-outline(type="button", style="margin-top: 15px;")
+            i.fas.fa-plus
+            |  Add Item
+
+        //  Transport Option 
+        .form-section
+          h3
+            i.fas.fa-truck
+            |  Delivery Options
+          .transport-fee
+            input#provideTransport(type="checkbox", name="provideTransport")
+            label(for="provideTransport") MWF will provide transport (adds 5% transport fee)
+        //  Summary Section 
+        .invoice-summary
+          .summary-row
+            span Subtotal:
+            span $3,355.00
+          .summary-row#transportRow(style="display: none;")
+            span Transport Fee (5%):
+            span $167.75
+          .summary-row.total
+            span Total Amount:
+            span#totalAmount $3,355.00
+        //  Form Actions 
+        .form-actions
+          button.btn.btn-outline(type="button")
+            i.fas.fa-times
+            |  Cancel
+
+          button.btn.btn-primary(type="button")
+            i.fas.fa-file-pdf
+            |  Preview Invoice
+
+          button.btn.btn-success(type="submit")
+            i.fas.fa-check
+            |  Create Invoice
+
+script(src="/javascript/invoice.js")

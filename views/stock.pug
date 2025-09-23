@@ -1,0 +1,130 @@
+meta(charset="UTF-8")
+meta(name="viewport", content="width=device-width,initial-scale=1")
+title MWF Ltd - Add New Product
+link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css")
+link(rel="stylesheet", href="/css/stock.css")
+.container
+  //  Sidebar 
+  .sidebar
+    .logo
+      h2 Mayondo Wood & Furniture Ltd
+    ul.nav-links
+      li
+        a(href="/manager")
+          i.fas.fa-home
+          |  Dashboard
+      li.active
+        a(href="/stock")
+          i.fas.fa-boxes
+          |  Record Stock
+      li
+        a(href="/orderStock")
+          i.fas.fa-truck
+          |  OrderStock
+      li
+        a(href="/user")
+          i.fas.fa-users
+          |  Users
+      li
+        a(href="/reports")
+          i.fas.fa-chart-bar
+          |  Reports
+  //  Main Content 
+  .main-content
+    //  Header 
+    .header
+      h1 Add New Product
+      .user-info
+        div
+          h3 Tee Mwangi
+          p Manager
+        img(src="/imgs/Beauty.png", alt="User")
+    //  Form Container 
+    .form-container
+      .form-header
+        h2 Add New Product to Inventory
+        p Fill in the details below to add a new product to the inventory system
+      form#addProductForm(action="/stock", method="post")
+        //  Basic Information Section 
+        .form-section
+          h3
+            i.fas.fa-info-circle
+            |  Basic Information
+          .form-row
+            .form-group
+              label.required(for="productName") Product Name
+              input#productName(type="text", name="productName", required, placeholder="e.g., Mahogany Timber Plank")
+            .form-group
+              label.required(for="productType") Product Type
+              select#productType(name="productType", required)
+                option(value) Select Type
+                option(value="timber") Timber
+                option(value="poles") Poles
+                option(value="hardwood") Hardwood
+                option(value="softwood") Softwood
+                option(value="furniture") Furniture
+                option(value="other") Other
+          .form-group
+            label(for="productDescription") Product Description
+            textarea#productDescription(name="productDescription", placeholder="Describe the product in detail...")
+        //  Pricing & Stock Section 
+        .form-section
+          h3
+            i.fas.fa-tags
+            |  Pricing & Stock
+          .form-row
+            .form-group
+              label.required(for="costPrice") Cost Price ($)
+              input#costPrice(type="number", name="costPrice", step="0.01", min="0", required, placeholder="0.00")
+              p.form-hint The price at which we acquire the product
+            .form-group
+              label.required(for="sellingPrice") Selling Price ($)
+              input#sellingPrice(type="number", name="sellingPrice", step="0.01", min="0", required, placeholder="0.00")
+              p.form-hint The price at which we sell the product
+          .form-row
+            .form-group
+              label.required(for="quantity") Quantity
+              input#quantity(type="number", name="quantity", min="1", required, placeholder="0")
+            .form-group
+              label(for="minStockLevel") Minimum Stock Level
+              input#minStockLevel(type="number", name="minStockLevel", min="1", placeholder="0")
+              p.form-hint Alert when stock falls below this level
+        //  Supplier Information Section 
+        .form-section
+          h3
+            i.fas.fa-truck
+            |  Supplier Information
+          .form-row
+            .form-group
+              label.required(for="supplierName") Supplier Name
+              input#supplierName(type="text", name="supplierName", required, placeholder="e.g., Timberland Suppliers")
+            .form-group
+              label(for="supplierContact") Supplier Contact
+              input#supplierContact(type="text", name="supplierContact", placeholder="Phone or email")
+        //  Additional Details Section 
+        .form-section
+          h3
+            i.fas.fa-sliders-h
+            |  Additional Details
+          .form-row
+            .form-group
+              label.required(for="quality") Quality Grade
+              select#quality(name="quality", required)
+                option(value) Select Quality
+                option(value="premium") Premium
+                option(value="standard") Standard
+                option(value="economy") Economy
+            .form-group
+              label(for="color") Color
+              input#color(type="text", name="color", placeholder="e.g., Dark Brown")
+        //  Form Actions 
+        .form-actions
+          button.btn.btn-outline(type="button")
+            i.fas.fa-times
+            |  Cancel
+
+          button.btn.btn-primary(type="submit")
+            i.fas.fa-plus-circle
+            |  Add Product
+
+script(src="/javascript/stock.js")

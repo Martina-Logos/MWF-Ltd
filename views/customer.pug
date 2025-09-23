@@ -1,0 +1,183 @@
+meta(charset="UTF-8")
+meta(name="viewport", content="width=device-width,initial-scale=1")
+title MWF Ltd - Add Customer
+link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css")
+link(rel="stylesheet", href="/css/customer.css")
+.container
+  //  Sidebar 
+  .sidebar
+    .logo
+      h2 Mayondo Wood & Furniture Ltd
+    ul.nav-links
+      li
+        a(href="/salesAgent")
+          i.fas.fa-home
+          |  Dashboard
+      li
+        a(href="/sales")
+          i.fas.fa-cash-register
+          |  Record Sale
+      li
+        a(href="/receipt")
+          i.fas.fa-receipt
+          |  Generate Receipt
+      li.active
+        a(href="/customer")
+          i.fas.fa-user-plus
+          |  Add Customer
+      li
+        a(href="/invoice")
+          i.fas.fa-file-invoice-dollar
+          |  Invoices
+      //
+         <li><a href="#"><i class="fas fa-boxes"></i> Inventory Check</a></li>
+                        <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li> 
+  //  Main Content 
+  .main-content
+    //  Header 
+    .header
+      h1 Add New Customer
+      .user-info
+        div
+          h3 Mugerwa Rollins
+          p Sales Attendant
+        img(src="/imgs/salesAgent.jpg", alt="User")
+    //  Form Container 
+    .form-container
+      .form-header
+        h2 Register New Customer
+        p Add a new business customer to the MWF Ltd database
+      form#customerForm(action="/customer", method="post")
+        //  Customer Type Section 
+        .form-section
+          h3
+            i.fas.fa-building
+            |  Customer Type
+          .customer-type-selector
+            .customer-type.selected(data-type="business")
+              i.fas.fa-hard-hat
+              h4 Construction Company
+              p Building & construction businesses
+            .customer-type(data-type="dealer")
+              i.fas.fa-warehouse
+              h4 Furniture Dealer
+              p Wood and furniture retailers
+            .customer-type(data-type="manufacturer")
+              i.fas.fa-industry
+              h4 Manufacturer
+              p Furniture and wood product makers
+            .customer-type(data-type="other")
+              i.fas.fa-briefcase
+              h4 Other Business
+              p Other B2B customers
+        //  Basic Information Section 
+        .form-section
+          h3
+            i.fas.fa-info-circle
+            |  Basic Information
+          .form-row
+            .form-group
+              label.required(for="companyName") Company Name
+              input#companyName(type="text", name="companyName", required, placeholder="e.g., BuildIT Constructions Ltd")
+            .form-group
+              label.required(for="businessType") Business Type
+              select#businessType(name="businessType", required)
+                option(value) Select Business Type
+                option(value="construction", selected) Building & Construction
+                option(value="furniture_dealer") Furniture Dealer
+                option(value="manufacturer") Manufacturer
+                option(value="contractor") Contractor
+                option(value="retailer") Retailer
+                option(value="other") Other
+          .form-row
+            .form-group
+              label(for="taxId") Tax ID / VAT Number
+              input#taxId(type="text", name="taxId", placeholder="e.g., VAT-123456789")
+            .form-group
+              label(for="customerSince") Customer Since
+              input#customerSince(type="date", name="customerSince")
+        //  Contact Information Section 
+        .form-section
+          h3
+            i.fas.fa-address-book
+            |  Contact Information
+          .form-row
+            .form-group
+              label.required(for="contactPerson") Primary Contact Person
+              input#contactPerson(type="text", name="contactPerson", required, placeholder="e.g., Robert Johnson")
+            .form-group
+              label(for="contactTitle") Contact Title
+              input#contactTitle(type="text", name="contactTitle", placeholder="e.g., Procurement Manager")
+          .form-row
+            .form-group
+              label.required(for="phone") Phone Number
+              input#phone(type="tel", name="phone", required, placeholder="e.g., +1 (555) 123-4567")
+            .form-group
+              label(for="email") Email Address
+              input#email(type="email", name="email", placeholder="e.g., contact@company.com")
+        //  Address Information Section 
+        .form-section
+          h3
+            i.fas.fa-map-marker-alt
+            |  Address Information
+          .form-row
+            .form-group
+              label.required(for="streetAddress") Street Address
+              input#streetAddress(type="text", name="streetAddress", required, placeholder="e.g., 123 Construction Avenue")
+            .form-group
+              label.required(for="city") City
+              input#city(type="text", name="city", required, placeholder="e.g., Buildington")
+          .form-row
+            .form-group
+              label(for="state") State/Province
+              input#state(type="text", name="state", placeholder="e.g., California")
+            .form-group
+              label(for="postalCode") Postal Code
+              input#postalCode(type="text", name="postalCode", placeholder="e.g., 90210")
+          .form-group
+            label.required(for="country") Country
+            input#country(type="text", name="country", required, placeholder="e.g., United States")
+        //  Business Details Section 
+        .form-section
+          h3
+            i.fas.fa-chart-line
+            |  Business Details
+          .form-row
+            .form-group
+              label.required(for="paymentTerms") Payment Terms
+              select#paymentTerms(name="paymentTerms", required)
+                option(value) Select Payment Terms
+                option(value="cod") Cash on Delivery
+                option(value="net7") Net 7 Days
+                option(value="net15") Net 15 Days
+                option(value="net30", selected) Net 30 Days
+                option(value="net60") Net 60 Days
+            .form-group
+              label(for="creditLimit") Credit Limit ($)
+              input#creditLimit(type="number", name="creditLimit", step="0.01", min="0", placeholder="0.00")
+              p.form-hint Set a credit limit for this customer
+          .form-group
+            label(for="preferredProducts") Preferred Products/Categories
+            select#preferredProducts(name="preferredProducts", multiple, style="height: 120px;")
+              option(value="timber") Timber
+              option(value="poles") Poles
+              option(value="hardwood") Hardwood
+              option(value="softwood") Softwood
+              option(value="furniture") Furniture
+              option(value="office_furniture") Office Furniture
+              option(value="home_furniture") Home Furniture
+            p.form-hint Hold Ctrl/Cmd to select multiple options
+          .form-group
+            label(for="notes") Additional Notes
+            textarea#notes(name="notes", placeholder="Any additional information about this customer...")
+        //  Form Actions 
+        .form-actions
+          button.btn.btn-outline#resetForm(type="button")
+            i.fas.fa-times
+            |  Cancel
+
+          button.btn.btn-success(type="submit")
+            i.fas.fa-user-plus
+            |  Add Customer
+
+script(src="/javascript/customer.js")

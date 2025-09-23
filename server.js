@@ -17,10 +17,11 @@ const userModel = require("./models/userModel");
 const authRoutes = require("./routes/authRoutes");
 const stockRoutes = require("./routes/stockRoutes");
 const salesRoutes = require("./routes/salesRoutes");
+const indexRoutes = require("./routes/indexRoutes");
 
 //2.Instantiations
 const app = express();
-const port = 3001;
+const port = 3000;
 
 //3.Configurations
 app.locals.moment = moment;
@@ -73,11 +74,14 @@ passport.use(userModel.createStrategy());
 passport.serializeUser(userModel.serializeUser());
 passport.deserializeUser(userModel.deserializeUser());
 
+
 //5. Routes
 //Using imported routes
 app.use("/", authRoutes);
-app.use("/", stockRoutes);
+app.use("/stock", stockRoutes);
 app.use("/", salesRoutes);
+app.use("/", indexRoutes);
+
 
 //non existent route handler second last
 app.use((req, res) => {

@@ -1,0 +1,263 @@
+meta(charset="UTF-8")
+meta(name="viewport", content="width=device-width,initial-scale=1")
+title MWF Ltd - User Management
+link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css")
+link(rel="stylesheet", href="/css/user.css")
+.container
+  //  Sidebar 
+  .sidebar
+    .logo
+      h2 Mayondo Wood & Furniture Ltd
+    ul.nav-links
+      li
+        a(href="/manager")
+          i.fas.fa-home
+          |  Dashboard
+      li
+        a(href="/stock")
+          i.fas.fa-boxes
+          |  Record Stock
+      li
+        a(href="/orderStock")
+          i.fas.fa-truck-loading
+          |  Order Stock
+      li.active
+        a(href="/user")
+          i.fas.fa-users
+          |  Users
+      li
+        a(href="/reports")
+          i.fas.fa-chart-bar
+          |  Reports
+  //  Main Content 
+  .main-content
+    //  Header 
+    .header
+      h1 User Management
+      .user-info
+        div
+          h3 Tee Mwangi
+          p Manager
+        img(src="/imgs/Beauty.png", alt="User")
+    //  Tabs 
+    .tabs
+      .tab.active(data-tab="users-list") Users List
+      .tab(data-tab="add-user") Add New User
+    //  Users List Tab 
+    .tab-content.active#users-list
+      .form-container
+        .form-header
+          h2 System Users
+          p Manage all user accounts in the system
+        table.data-table
+          thead
+            tr
+              th Name
+              th Email
+              th Role
+              th Status
+              th Last Login
+              th Actions
+          tbody
+            tr
+              td
+                .user-info(style="justify-content: flex-start;")
+                  img(src="https://xsgames.co/randomusers/avatar.php?g=male&1", alt="User", style="width: 40px; height: 40px; margin-right: 10px;")
+                  div
+                    div John Manager
+                    small(style="color: var(--gray);") ID: USR-001
+              td john.manager@mwf.com
+              td
+                span.role.manager Manager
+              td
+                span.status.active Active
+              td Today, 09:24 AM
+              td
+                .action-buttons
+                  button.action-btn.btn-edit(data-user="1")
+                    i.fas.fa-edit
+                    |  Edit
+                  button.action-btn.btn-delete(data-user="1", disabled)
+                    i.fas.fa-trash
+                    |  Delete
+            tr
+              td
+                .user-info(style="justify-content: flex-start;")
+                  img(src="https://xsgames.co/randomusers/avatar.php?g=female&2", alt="User", style="width: 40px; height: 40px; margin-right: 10px;")
+                  div
+                    div Sarah Johnson
+                    small(style="color: var(--gray);") ID: USR-002
+              td sarah.j@mwf.com
+              td
+                span.role.attendant Sales Attendant
+              td
+                span.status.active Active
+              td Yesterday, 03:45 PM
+              td
+                .action-buttons
+                  button.action-btn.btn-edit(data-user="2")
+                    i.fas.fa-edit
+                    |  Edit
+                  button.action-btn.btn-delete(data-user="2")
+                    i.fas.fa-trash
+                    |  Delete
+            tr
+              td
+                .user-info(style="justify-content: flex-start;")
+                  img(src="https://xsgames.co/randomusers/avatar.php?g=male&3", alt="User", style="width: 40px; height: 40px; margin-right: 10px;")
+                  div
+                    div Michael Brown
+                    small(style="color: var(--gray);") ID: USR-003
+              td michael.b@mwf.com
+              td
+                span.role.attendant Warehouse Attendant
+              td
+                span.status.active Active
+              td Today, 08:15 AM
+              td
+                .action-buttons
+                  button.action-btn.btn-edit(data-user="3")
+                    i.fas.fa-edit
+                    |  Edit
+                  button.action-btn.btn-delete(data-user="3")
+                    i.fas.fa-trash
+                    |  Delete
+            tr
+              td
+                .user-info(style="justify-content: flex-start;")
+                  img(src="https://xsgames.co/randomusers/avatar.php?g=female&4", alt="User", style="width: 40px; height: 40px; margin-right: 10px;")
+                  div
+                    div Emily Wilson
+                    small(style="color: var(--gray);") ID: USR-004
+              td emily.w@mwf.com
+              td
+                span.role.attendant Sales Attendant
+              td
+                span.status.inactive Inactive
+              td Nov 5, 2023
+              td
+                .action-buttons
+                  button.action-btn.btn-edit(data-user="4")
+                    i.fas.fa-edit
+                    |  Edit
+                  button.action-btn.btn-delete(data-user="4")
+                    i.fas.fa-trash
+                    |  Delete
+            tr
+              td
+                .user-info(style="justify-content: flex-start;")
+                  img(src="https://xsgames.co/randomusers/avatar.php?g=male&5", alt="User", style="width: 40px; height: 40px; margin-right: 10px;")
+                  div
+                    div David Lee
+                    small(style="color: var(--gray);") ID: USR-005
+              td david.l@mwf.com
+              td
+                span.role.attendant Warehouse Attendant
+              td
+                span.status.active Active
+              td Today, 07:30 AM
+              td
+                .action-buttons
+                  button.action-btn.btn-edit(data-user="5")
+                    i.fas.fa-edit
+                    |  Edit
+                  button.action-btn.btn-delete(data-user="5")
+                    i.fas.fa-trash
+                    |  Delete
+    //  Add User Tab 
+    .tab-content#add-user
+      .form-container
+        .form-header
+          h2 Add New User
+          p Create a new user account for system access
+        form#userForm
+          //  Personal Information Section 
+          .form-section
+            h3
+              i.fas.fa-user
+              |  Personal Information
+            .form-row
+              .form-group
+                label.required(for="firstName") First Name
+                input#firstName(type="text", name="firstName", required, placeholder="e.g., John")
+              .form-group
+                label.required(for="lastName") Last Name
+                input#lastName(type="text", name="lastName", required, placeholder="e.g., Doe")
+            .form-row
+              .form-group
+                label.required(for="email") Email Address
+                input#email(type="email", name="email", required, placeholder="e.g., johndoe@mwf.com")
+              .form-group
+                label(for="phone") Phone Number
+                input#phone(type="tel", name="phone", placeholder="e.g., +1 (555) 123-4567")
+          //  Account Information Section 
+          .form-section
+            h3
+              i.fas.fa-key
+              |  Account Information
+            .form-row
+              .form-group
+                label.required(for="username") Username
+                input#username(type="text", name="username", required, placeholder="e.g., johndoe")
+                p.form-hint Will be used for login
+              .form-group
+                label.required(for="password") Password
+                input#password(type="password", name="password", required, placeholder="Enter a strong password")
+                p.form-hint Minimum 8 characters with letters and numbers
+            .form-row
+              .form-group
+                label.required(for="role") User Role
+                select#role(name="role", required)
+                  option(value) Select Role
+                  option(value="manager") Manager
+                  option(value="attendant") Attendant
+                p.form-hint Managers have full access, attendants have limited access
+              .form-group
+                label.required(for="status") Account Status
+                select#status(name="status", required)
+                  option(value="active", selected) Active
+                  option(value="inactive") Inactive
+          //  Permissions Section 
+          .form-section
+            h3
+              i.fas.fa-shield-alt
+              |  Permissions
+            .form-group
+              label System Access
+              div(style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 10px; margin-top: 10px;")
+                div
+                  input#inventoryAccess(type="checkbox", name="inventoryAccess", checked)
+                  label(for="inventoryAccess") Inventory Management
+                div
+                  input#salesAccess(type="checkbox", name="salesAccess", checked)
+                  label(for="salesAccess") Sales & Invoicing
+                div
+                  input#reportsAccess(type="checkbox", name="reportsAccess")
+                  label(for="reportsAccess") Reports
+                div
+                  input#userManagementAccess(type="checkbox", name="userManagementAccess")
+                  label(for="userManagementAccess") User Management
+          //  Form Actions 
+          .form-actions
+            button.btn.btn-outline#resetForm(type="button")
+              i.fas.fa-times
+              |  Cancel
+
+            button.btn.btn-success(type="submit")
+              i.fas.fa-user-plus
+              |  Create User
+
+//  Delete Confirmation Modal 
+.modal#deleteModal
+  .modal-content
+    .modal-header
+      h2 Confirm Deletion
+      span.close ×
+    p
+      | Are you sure you want to delete the user 
+      strong#deleteUserName John Doe
+      | ? This action cannot be undone.
+    .modal-actions
+      button.btn.btn-outline#cancelDelete Cancel
+      button.btn.btn-danger#confirmDelete Delete User
+script(src="/javascript/user.js")

@@ -1,12 +1,12 @@
 const express = require("express"); //In every route file, you must have these two as well as the button line of (module.exports)
-const { title } = require("process");
+// const { title } = require("process");
 const router = express.Router();
 const passport = require("passport");
 
 const UserModel = require("../models/userModel");
 
 //Getting the landing page
-router.get("/", (req, res) => {
+router.get("/index", (req, res) => {
   res.render("index");
 });
 
@@ -29,7 +29,7 @@ router.post(
     console.log("Login attempt:", req.body); // login credentials
     next();
   },
-  passport.authenticate("local", { failureRedirect: "/index" }),
+  passport.authenticate("local", { failureRedirect: "/manager" }),
   (req, res) => {
     console.log("Authenticated user:", req.user); // login user
     req.session.user = req.user;

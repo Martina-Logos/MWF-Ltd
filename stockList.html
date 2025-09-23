@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MWF Ltd - Stock Management</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/public/css/stockList.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="logo">
+                <h2>MWF Ltd Manager</h2>
+            </div>
+            
+            <ul class="nav-links">
+                <li><a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li class="active"><a href="#"><i class="fas fa-boxes"></i> Stock Management</a></li>
+                <li><a href="sales-form.html"><i class="fas fa-cash-register"></i> Point of Sale</a></li>
+                <li><a href="invoices.html"><i class="fas fa-file-invoice-dollar"></i> Invoices</a></li>
+                <li><a href="orders.html"><i class="fas fa-truck-loading"></i> Order Stock</a></li>
+                <li><a href="customers.html"><i class="fas fa-users"></i> Customers</a></li>
+                <li><a href="#"><i class="fas fa-chart-bar"></i> Reports</a></li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            <div class="header">
+                <h1>Stock Management</h1>
+                <div class="user-info">
+                    <div>
+                        <h3>John Manager</h3>
+                        <p>Manager</p>
+                    </div>
+                    <img src="https://xsgames.co/randomusers/avatar.php?g=male" alt="User">
+                </div>
+            </div>
+
+            <!-- Stock Summary -->
+            <div class="stock-summary">
+                <div class="summary-card card-primary">
+                    <i class="fas fa-boxes"></i>
+                    <h3>1,248</h3>
+                    <p>Total Products</p>
+                </div>
+                <div class="summary-card card-success">
+                    <i class="fas fa-check-circle"></i>
+                    <h3>1,042</h3>
+                    <p>In Stock</p>
+                </div>
+                <div class="summary-card card-warning">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <h3>38</h3>
+                    <p>Low Stock</p>
+                </div>
+                <div class="summary-card card-danger">
+                    <i class="fas fa-times-circle"></i>
+                    <h3>12</h3>
+                    <p>Out of Stock</p>
+                </div>
+            </div>
+
+            <!-- Controls Section -->
+            <div class="controls">
+                <div class="controls-header">
+                    <h2>Stock Inventory</h2>
+                    <div>
+                        <button class="btn btn-primary">
+                            <i class="fas fa-plus"></i> Add New Product
+                        </button>
+                        <button class="btn btn-success">
+                            <i class="fas fa-file-export"></i> Export
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="filters">
+                    <div class="search-box">
+                        <input type="text" placeholder="Search products by name, code, or supplier...">
+                        <button><i class="fas fa-search"></i> Search</button>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="categoryFilter">Product Type</label>
+                        <select id="categoryFilter">
+                            <option value="">All Types</option>
+                            <option value="timber">Timber</option>
+                            <option value="poles">Poles</option>
+                            <option value="hardwood">Hardwood</option>
+                            <option value="softwood">Softwood</option>
+                            <option value="furniture">Furniture</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="statusFilter">Stock Status</label>
+                        <select id="statusFilter">
+                            <option value="">All Status</option>
+                            <option value="in-stock">In Stock</option>
+                            <option value="low-stock">Low Stock</option>
+                            <option value="out-of-stock">Out of Stock</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="qualityFilter">Quality</label>
+                        <select id="qualityFilter">
+                            <option value="">All Quality</option>
+                            <option value="premium">Premium</option>
+                            <option value="standard">Standard</option>
+                            <option value="economy">Economy</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stock Table -->
+            <div class="stock-table-container">
+                <table class="stock-table">
+                    <thead>
+                        <tr>
+                            <th>Product ID</th>
+                            <th>Product Name</th>
+                            <th>Type</th>
+                            <th>Supplier</th>
+                            <th>Cost Price</th>
+                            <th>Selling Price</th>
+                            <th>Stock Level</th>
+                            <th>Status</th>
+                            <th>Quality</th>
+                            <th>Last Updated</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="stockTableBody">
+                        <!-- Sample data will be populated by JavaScript -->
+                    </tbody>
+                </table>
+                
+                <!-- Pagination -->
+                <div class="pagination">
+                    <button class="active">1</button>
+                    <button>2</button>
+                    <button>3</button>
+                    <button>4</button>
+                    <button>5</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/javascript/stockList.js"></script>
+</body>
+</html>
