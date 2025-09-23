@@ -7,6 +7,7 @@ const stockSchema = new mongoose.Schema({
   },
   productType: {
     type: String,
+    enum: ["timber", "poles", "hardwood", "softwood", "furniture", "other"],
     required: true,
   },
   costPrice: {
@@ -19,6 +20,7 @@ const stockSchema = new mongoose.Schema({
   },
   quantity: {
     type: Number,
+    enum: ["premium", "standard", "economy"],
     required: true,
   },
   supplierName: {
@@ -37,7 +39,6 @@ const stockSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-
 });
 
 module.exports = mongoose.model("StockModel", stockSchema);
