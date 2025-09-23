@@ -60,7 +60,7 @@
                             
                             <div class="form-group">
                                 <label for="productType" class="required">Product Type</label>
-                                <select id="productType" name="productType" required>
+                                <select id="productType" name="productType" type="text" required>
                                     <option value="">Select Type</option>
                                     <option value="timber">Timber</option>
                                     <option value="poles">Poles</option>
@@ -72,10 +72,6 @@
                             </div>
                         </div>
                         
-                        <div class="form-group">
-                            <label for="productDescription">Product Description</label>
-                            <textarea id="productDescription" name="productDescription" placeholder="Describe the product in detail..."></textarea>
-                        </div>
                     </div>
 
                     <!-- Pricing & Stock Section -->
@@ -102,11 +98,6 @@
                                 <input type="number" id="quantity" name="quantity" min="1" required placeholder="0">
                             </div>
                             
-                            <div class="form-group">
-                                <label for="minStockLevel">Minimum Stock Level</label>
-                                <input type="number" id="minStockLevel" name="minStockLevel" min="1" placeholder="0">
-                                <p class="form-hint">Alert when stock falls below this level</p>
-                            </div>
                         </div>
                     </div>
 
@@ -134,7 +125,7 @@
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="quality" class="required">Quality Grade</label>
-                                <select id="quality" name="quality" required>
+                                <select id="quality" name="quality" type="text" required>
                                     <option value="">Select Quality</option>
                                     <option value="premium">Premium</option>
                                     <option value="standard">Standard</option>

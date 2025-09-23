@@ -29,13 +29,13 @@ router.post(
     console.log("Login attempt:", req.body); // login credentials
     next();
   },
-  passport.authenticate("local", { failureRedirect: "/manager" }),
+  passport.authenticate("local", { failureRedirect: "/login" }),
   (req, res) => {
     console.log("Authenticated user:", req.user); // login user
     req.session.user = req.user;
     if (req.user.role === "Manager") {
       res.redirect("/manager");
-    } else if (req.user.role === "Attendant") {
+    } else if (req.user.role === "Sales Agent") {
       res.redirect("/salesAgent");
     } else {
       res.render("noneuser");

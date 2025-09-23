@@ -25,6 +25,7 @@ const port = 3000;
 
 //3.Configurations
 app.locals.moment = moment;
+
 //Setting up mongodb connection
 mongoose.connect(process.env.MONGODB_URL, {
   // useNewUrlParser: true,
@@ -78,7 +79,7 @@ passport.deserializeUser(userModel.deserializeUser());
 //5. Routes
 //Using imported routes
 app.use("/", authRoutes);
-app.use("/stock", stockRoutes);
+app.use("/", stockRoutes);
 app.use("/", salesRoutes);
 app.use("/", indexRoutes);
 

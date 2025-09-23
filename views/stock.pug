@@ -64,9 +64,6 @@ link(rel="stylesheet", href="/css/stock.css")
                 option(value="softwood") Softwood
                 option(value="furniture") Furniture
                 option(value="other") Other
-          .form-group
-            label(for="productDescription") Product Description
-            textarea#productDescription(name="productDescription", placeholder="Describe the product in detail...")
         //  Pricing & Stock Section 
         .form-section
           h3
@@ -85,10 +82,6 @@ link(rel="stylesheet", href="/css/stock.css")
             .form-group
               label.required(for="quantity") Quantity
               input#quantity(type="number", name="quantity", min="1", required, placeholder="0")
-            .form-group
-              label(for="minStockLevel") Minimum Stock Level
-              input#minStockLevel(type="number", name="minStockLevel", min="1", placeholder="0")
-              p.form-hint Alert when stock falls below this level
         //  Supplier Information Section 
         .form-section
           h3

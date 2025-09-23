@@ -12,10 +12,10 @@ document.getElementById("glassForm").addEventListener("submit", function (e) {
 
   if (email === validEmail && password === validPassword) {
     alert("Login successful ");
-    window.location.href = "manager"; // redirect
+    window.location.href = "/manager"; // redirect
   } else if (email === agentEmail && password === agentPassword) {
     alert("Login successful ");
-    window.location.href = "salesAgent"; // redirect
+    window.location.href = "/salesAgent"; // redirect
   } else {
     alert("Invalid email or password");
   }

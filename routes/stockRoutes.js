@@ -40,4 +40,6 @@ router.get("/stockList", async (req, res) => {
 //updating stock
 router.put("/stockList", (req, res) => {});
 
+
+
 module.exports = router;
