@@ -18,7 +18,7 @@ link(rel="stylesheet", href="/css/orderStock.css")
           i.fas.fa-boxes
           |  Record Stock
       li.active
-        a(href="/orderStock")
+        a(href="/orderStock/new")
           i.fas.fa-truck-loading
           |  Order Stock
       li
@@ -44,7 +44,7 @@ link(rel="stylesheet", href="/css/orderStock.css")
       .form-header
         h2 Create Purchase Order
         p Order new stock from your suppliers
-      form#orderForm((action="/orderStock", method="post", ))
+      form#orderForm((action="/orderStock", method="POST", ))
         //  Supplier Information Section 
         .form-section
           h3
@@ -53,7 +53,7 @@ link(rel="stylesheet", href="/css/orderStock.css")
           .form-row
             .form-group
               label.required(for="supplier") Select Supplier
-              select#supplier(name="supplier", required)
+              select#supplier(name="supplier", type="text" required)
                 option(value) Select a Supplier
                 option(value="1") Timberland Suppliers
                 option(value="2") Premium Woods Ltd
@@ -71,9 +71,8 @@ link(rel="stylesheet", href="/css/orderStock.css")
               label.required(for="paymentTerms") Payment Terms
               select#paymentTerms(name="paymentTerms", required)
                 option(value) Select Terms
-                option(value="net15") Net 15 Days
-                option(value="net30", selected) Net 30 Days
-                option(value="net60") Net 60 Days
+                option(value="net15") 15 Days
+                option(value="net30", selected) 30 Days
                 option(value="cod") Cash on Delivery
                 option(value="prepaid") Prepaid
           //  Supplier Details (displayed when a supplier is selected) 

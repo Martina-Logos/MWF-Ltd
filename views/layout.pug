@@ -1,0 +1,51 @@
+head
+  meta(charset="UTF-8")
+  meta(name="viewport", content="width=device-width,initial-scale=1")
+  //- title MWF Ltd - Order Stock
+  link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css")
+  link(rel="stylesheet", href="/css/orderStock.css")
+  //- Todo: Render the title Dynamically
+  title MWF Ltd - Manager Dashboard
+  //- link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css")
+  //- script(src="https://cdn.jsdelivr.net/npm/chart.js")
+  link(rel="stylesheet", href="/css/manager.css")
+body   
+  .container
+    //- //  Sidebar 
+    //- .sidebar
+    //-   .logo
+    //-     h2 Mayondo Wood & Furniture Ltd
+    //-   ul.nav-links
+    //-     li
+    //-       a(href="/manager")
+    //-         i.fas.fa-home
+    //-         |  Dashboard
+    //-     li
+    //-       a(href="/stock")
+    //-         i.fas.fa-boxes
+    //-         |  Record Stock
+    //-     li.active
+    //-       a(href="/orderStock")
+    //-         i.fas.fa-truck-loading
+    //-         |  Order Stock
+    //-     li
+    //-       a(href="/user")
+    //-         i.fas.fa-users
+    //-         |  Users
+    //-     li
+    //-       a(href="/reports")
+    //-         i.fas.fa-chart-bar
+    //-         |  Reports
+    //- include sideBar
+    //  Main Content 
+    .main-content
+      //  Header 
+      .header
+        h1 Order Stock
+        .user-info
+          div
+            h3 Tee Mwangi
+            p Manager
+          img(src="/imgs/Beauty.png", alt="User")
+      block content
+

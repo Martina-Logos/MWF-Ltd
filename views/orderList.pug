@@ -1,0 +1,25 @@
+extends layout
+
+block content
+  .container
+    h1 Purchase Orders
+    table.table
+      thead
+        tr
+          th Order #
+          th Supplier
+          th Order Date
+          th Expected
+          th Payment Terms
+          th Subtotal ($)
+          th Total ($)
+      tbody
+        each order in orders
+          tr
+            td #{order._id}
+            td #{order.supplier}
+            td #{order.orderDate.toDateString()}
+            td #{order.expectedDate ? order.expectedDate.toDateString() : '-'}
+            td #{order.paymentTerms}
+            td $#{order.subtotal.toFixed(2)}
+            td $#{order.orderTotal.toFixed(2)}

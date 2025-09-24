@@ -12,12 +12,17 @@ require("dotenv").config();
 
 //import models
 const userModel = require("./models/userModel");
+const stockModel = require("./models/stockModel");
+const orderStockModel = require("./models/orderStockModel");
+const salesModel = require("./models/salesModel");
 
 //import routes
 const authRoutes = require("./routes/authRoutes");
 const stockRoutes = require("./routes/stockRoutes");
 const salesRoutes = require("./routes/salesRoutes");
 const indexRoutes = require("./routes/indexRoutes");
+const orderStockRoutes = require("./routes/orderStockRoutes");
+
 
 //2.Instantiations
 const app = express();
@@ -82,6 +87,7 @@ app.use("/", authRoutes);
 app.use("/", stockRoutes);
 app.use("/", salesRoutes);
 app.use("/", indexRoutes);
+app.use("/", orderStockRoutes);
 
 
 //non existent route handler second last
