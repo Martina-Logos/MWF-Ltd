@@ -170,7 +170,7 @@ link(rel="stylesheet", href="/css/user.css")
         .form-header
           h2 Add New User
           p Create a new user account for system access
-        form#userForm
+        form#userForm(action="/user", method="post")
           //  Personal Information Section 
           .form-section
             h3
@@ -179,17 +179,17 @@ link(rel="stylesheet", href="/css/user.css")
             .form-row
               .form-group
                 label.required(for="firstName") First Name
-                input#firstName(type="text", name="firstName", required, placeholder="e.g., John")
+                input#firstName(type="text", name="firstName", required, placeholder="e.g., Cyrus")
               .form-group
                 label.required(for="lastName") Last Name
-                input#lastName(type="text", name="lastName", required, placeholder="e.g., Doe")
+                input#lastName(type="text", name="lastName", required, placeholder="e.g., Mugisha")
             .form-row
               .form-group
                 label.required(for="email") Email Address
-                input#email(type="email", name="email", required, placeholder="e.g., johndoe@mwf.com")
+                input#email(type="email", name="email", required, placeholder="e.g., cyrusmugisha@mwf.com")
               .form-group
                 label(for="phone") Phone Number
-                input#phone(type="tel", name="phone", placeholder="e.g., +1 (555) 123-4567")
+                input#phone(type="tel", name="phone", placeholder="e.g., +256 7123-45670")
           //  Account Information Section 
           .form-section
             h3
@@ -198,7 +198,7 @@ link(rel="stylesheet", href="/css/user.css")
             .form-row
               .form-group
                 label.required(for="username") Username
-                input#username(type="text", name="username", required, placeholder="e.g., johndoe")
+                input#username(type="text", name="username", required, placeholder="e.g., cyrusmugisha")
                 p.form-hint Will be used for login
               .form-group
                 label.required(for="password") Password

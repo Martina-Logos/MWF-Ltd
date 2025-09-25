@@ -101,8 +101,8 @@ link(rel="stylesheet", href="/css/orderStock.css")
               tr
                 th(width="40%") Product
                 th(width="15%") Quantity
-                th(width="15%") Unit Cost ($)
-                th(width="20%") Total ($)
+                th(width="15%") Unit Cost (shs)
+                th(width="20%") Total (shs)
                 th(width="10%") Actions
             tbody#itemsTableBody
               tr
@@ -118,7 +118,7 @@ link(rel="stylesheet", href="/css/orderStock.css")
                   input(type="number", name="quantity[]", min="1", value="1", required)
                 td
                   input(type="number", name="cost[]", step="0.01", min="0", value="0.00", required)
-                td $0.00
+                td shs0.00
                 td.item-actions
                   button.btn-remove(type="button")
                     i.fas.fa-trash
@@ -150,13 +150,13 @@ link(rel="stylesheet", href="/css/orderStock.css")
         .order-summary
           .summary-row
             span Subtotal:
-            span $0.00
+            span shs0.00
           .summary-row
             span Shipping Cost:
-            span#shippingDisplay $0.00
+            span#shippingDisplay shs0.00
           .summary-row.total
             span Order Total:
-            span#orderTotal $0.00
+            span#orderTotal shs0.00
         //  Form Actions 
         .form-actions
           button.btn.btn-outline(type="button")

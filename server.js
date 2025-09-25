@@ -15,13 +15,16 @@ const userModel = require("./models/userModel");
 const stockModel = require("./models/stockModel");
 const orderStockModel = require("./models/orderStockModel");
 const salesModel = require("./models/salesModel");
+const loginModel = require("./models/loginModel");
 
 //import routes
-const authRoutes = require("./routes/authRoutes");
+const loginRoutes = require("./routes/loginRoutes");
 const stockRoutes = require("./routes/stockRoutes");
 const salesRoutes = require("./routes/salesRoutes");
 const indexRoutes = require("./routes/indexRoutes");
 const orderStockRoutes = require("./routes/orderStockRoutes");
+const userRoutes = require("./routes/userRoutes");
+const reportsRoutes = require("./routes/reportsRoutes");
 
 
 //2.Instantiations
@@ -76,18 +79,20 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //authenticate with passport local strategy
-passport.use(userModel.createStrategy());
-passport.serializeUser(userModel.serializeUser());
-passport.deserializeUser(userModel.deserializeUser());
+passport.use(loginModel.createStrategy());
+passport.serializeUser(loginModel.serializeUser());
+passport.deserializeUser(loginModel.deserializeUser());
 
 
 //5. Routes
 //Using imported routes
-app.use("/", authRoutes);
+app.use("/", loginRoutes);
 app.use("/", stockRoutes);
 app.use("/", salesRoutes);
 app.use("/", indexRoutes);
 app.use("/", orderStockRoutes);
+app.use("/", userRoutes);
+app.use("/", reportsRoutes);
 
 
 //non existent route handler second last

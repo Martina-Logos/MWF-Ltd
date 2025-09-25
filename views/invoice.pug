@@ -101,8 +101,8 @@ link(rel="stylesheet", href="/public/css/invoice.css")
               tr
                 th(width="40%") Product
                 th(width="15%") Quantity
-                th(width="15%") Unit Price ($)
-                th(width="20%") Total ($)
+                th(width="15%") Unit Price (shs)
+                th(width="20%") Total (shs)
                 th(width="10%") Actions
             tbody#itemsTableBody
               tr
@@ -118,7 +118,7 @@ link(rel="stylesheet", href="/public/css/invoice.css")
                   input(type="number", name="quantity[]", min="1", value="20", required)
                 td
                   input(type="number", name="price[]", step="0.01", min="0", value="125.00", required)
-                td $2,500.00
+                td shs.2000
                 td.item-actions
                   button.btn-remove(type="button")
                     i.fas.fa-trash
@@ -135,7 +135,7 @@ link(rel="stylesheet", href="/public/css/invoice.css")
                   input(type="number", name="quantity[]", min="1", value="10", required)
                 td
                   input(type="number", name="price[]", step="0.01", min="0", value="85.50", required)
-                td $855.00
+                td shs.10000
                 td.item-actions
                   button.btn-remove(type="button")
                     i.fas.fa-trash
@@ -155,13 +155,13 @@ link(rel="stylesheet", href="/public/css/invoice.css")
         .invoice-summary
           .summary-row
             span Subtotal:
-            span $3,355.00
+            span shs.000.00
           .summary-row#transportRow(style="display: none;")
             span Transport Fee (5%):
-            span $167.75
+            span shs000.00
           .summary-row.total
             span Total Amount:
-            span#totalAmount $3,355.00
+            span#totalAmount shs000.00
         //  Form Actions 
         .form-actions
           button.btn.btn-outline(type="button")

@@ -83,8 +83,8 @@ link(rel="stylesheet", href="/css/sales.css")
               tr
                 th(width="40%") Product
                 th(width="15%") Quantity
-                th(width="15%") Unit Price ($)
-                th(width="20%") Total ($)
+                th(width="15%") Unit Price (shs)
+                th(width="20%") Total (shs)
                 th(width="10%") Actions
             tbody#itemsTableBody
               tr
@@ -100,7 +100,7 @@ link(rel="stylesheet", href="/css/sales.css")
                   input(type="number", name="quantity[]", min="1", value="1", required)
                 td
                   input(type="number", name="price[]", step="0.01", min="0", value="0.00", required)
-                td $0.00
+                td shs0.00
                 td.item-actions
                   button.btn-remove(type="button")
                     i.fas.fa-trash
@@ -133,13 +133,13 @@ link(rel="stylesheet", href="/css/sales.css")
         .sales-summary
           .summary-row
             span Subtotal:
-            span $0.00
+            span shs0.00
           .summary-row#transportRow(style="display: none;")
             span Transport Fee (5%):
-            span $0.00
+            span shs0.00
           .summary-row.total
             span Total Amount:
-            span#totalAmount $0.00
+            span#totalAmount shs0.00
         //  Form Actions 
         .form-actions
           button.btn.btn-outline(type="button")

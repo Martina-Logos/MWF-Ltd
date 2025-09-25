@@ -3,7 +3,7 @@ const express = require("express"); //In every route file, you must have these t
 const router = express.Router();
 const passport = require("passport");
 
-const UserModel = require("../models/userModel");
+const UserModel = require("../models/loginModel");
 
 //Getting the landing page
 router.get("/index", (req, res) => {
