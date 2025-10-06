@@ -1,0 +1,79 @@
+meta(charset="UTF-8")
+meta(name="viewport", content="width=device-width, initial-scale=1")
+title MWF Ltd - Customer List
+link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css")
+link(rel="stylesheet", href="/css/customerList.css")
+
+.container
+  // Sidebar
+  .sidebar
+    .logo
+      h2 Mayondo Wood & Furniture Ltd
+    ul.nav-links
+      li
+        a(href="/salesAgent")
+          i.fas.fa-home
+          | Dashboard
+      li
+        a(href="/sales")
+          i.fas.fa-cash-register
+          | Record Sale
+      li
+        a(href="/receipt")
+          i.fas.fa-receipt
+          | Receipt
+      li
+        a(href="/customer")
+          i.fas.fa-user-plus
+          | Add Customer
+      li.active
+        a(href="/customerList")
+          i.fas.fa-users
+          | Customer List
+      li
+        a(href="/invoice")
+          i.fas.fa-file-invoice-dollar
+          | Invoices
+
+  // Main Content
+  .main-content
+    // Header
+    .header
+      h1 Customer List
+      .user-info
+        div
+          h3 Mugerwa Rollins
+          p Sales Attendant
+        img(src="/imgs/salesAgent.jpg", alt="User")
+
+    // Table Container
+    .table-container
+      h2 Registered Customers
+      table
+        thead
+          tr
+            th Company Name
+            th Business Type
+            th Contact Person
+            th Phone
+            th Email
+            th City
+            th Country
+            th Payment Terms
+            th Credit Limit
+        tbody
+          if customers.length
+            each customer in customers
+              tr
+                td #{customer.companyName}
+                td #{customer.businessType}
+                td #{customer.contactPerson}
+                td #{customer.phone}
+                td #{customer.email || '-'}
+                td #{customer.city}
+                td #{customer.country}
+                td #{customer.paymentTerms}
+                td UGX #{customer.creditLimit ? customer.creditLimit.toLocaleString() : 0}
+          else
+            tr
+              td(colspan="9") No customers registered yet.

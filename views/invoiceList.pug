@@ -1,0 +1,58 @@
+meta(charset="UTF-8")
+meta(name="viewport", content="width=device-width, initial-scale=1")
+title MWF Ltd - Invoices
+link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css")
+link(rel="stylesheet", href="/css/invoiceList.css")
+
+.container
+  .sidebar
+    .logo
+      h2 Mayondo Wood & Furniture Ltd
+    ul.nav-links
+      li
+        a(href="/salesAgent")
+          i.fas.fa-home
+          | Dashboard
+      li
+        a(href="/sales")
+          i.fas.fa-cash-register
+          | Record Sale
+      li
+        a(href="/invoice")
+          i.fas.fa-file-invoice-dollar
+          | Create Invoice
+      li.active
+        a(href="/invoice/list")
+          i.fas.fa-list
+          | Invoice List
+
+  .main-content
+    .header
+      h1 All Invoices
+
+    .invoice-table
+      table
+        thead
+          tr
+            th Invoice #
+            th Customer
+            th Date
+            th Total
+            th Actions
+        tbody
+          each invoice in invoices
+            tr
+              td= invoice.invoiceNumber
+              td= invoice.customerName
+              td= invoice.invoiceDate.toLocaleDateString()
+              td= "shs" + invoice.total.toFixed(2)
+              td
+                a.btn(href=`/invoice/view/${invoice._id}`)
+                  i.fas.fa-eye
+                  | View
+                a.btn(href=`/invoice/edit/${invoice._id}`)
+                  i.fas.fa-edit
+                  | Edit
+                a.btn(href=`/invoice/delete/${invoice._id}`)
+                  i.fas.fa-trash
+                  | Delete

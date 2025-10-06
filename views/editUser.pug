@@ -1,0 +1,56 @@
+doctype html
+html
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title Edit User
+    link(rel="stylesheet" href="/css/signup.css")
+    link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css")
+  body
+    .form-container
+      .form-header
+        h2 Edit User
+        p Update user information and permissions
+
+      form#editUserForm(action=`/user/edit/${user._id}` method="post")
+        .form-section
+          h3 Personal Information
+          .form-row
+            .form-group
+              label.required(for="firstName") First Name
+              input#firstName(type="text", name="firstName", value=user.firstName, required)
+            .form-group
+              label.required(for="lastName") Last Name
+              input#lastName(type="text", name="lastName", value=user.lastName, required)
+          .form-row
+            .form-group
+              label.required(for="email") Email Address
+              input#email(type="email", name="email", value=user.email, required)
+            .form-group
+              label(for="phone") Phone Number
+              input#phone(type="tel", name="phone", value=user.phone)
+            .form-group
+              label.required(for="role") User Role
+              select#role(name="role", required)
+                option(value="manager" selected=(user.role === 'manager') ? true : false) Manager
+                option(value="attendant" selected=(user.role === 'attendant') ? true : false) Attendant
+
+        .form-section
+          h3 Permissions
+          .form-group
+            label System Access
+            .permissions(style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 10px; margin-top: 10px;")
+              div
+                input#inventoryAccess(type="checkbox", name="inventoryAccess", checked=user.permissions.inventory)
+                label(for="inventoryAccess") Stock Management
+              div
+                input#salesAccess(type="checkbox", name="salesAccess", checked=user.permissions.sales)
+                label(for="salesAccess") Sales & Invoicing
+
+        .form-actions
+          button.btn.btn-success(type="submit")
+            i.fas.fa-save
+            |  Save Changes
+          button.btn.btn-secondary(type="button" onclick="window.location.href='/user'" style="margin-left:10px;")
+            i.fas.fa-arrow-left
+            |  Back

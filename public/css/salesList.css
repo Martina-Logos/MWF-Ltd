@@ -1,0 +1,264 @@
+/* ===========================
+   Global / Container
+=========================== */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f6f8;
+  color: #333;
+}
+
+.container {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ===========================
+   Sidebar
+=========================== */
+.sidebar {
+  width: 220px;
+  background-color: #565819; /* Dodger Blue */
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0;
+}
+
+.sidebar .logo h2 {
+  text-align: center;
+  font-size: 18px;
+  margin-bottom: 30px;
+  padding: 0 10px;
+}
+
+.sidebar ul.nav-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar ul.nav-links li {
+  margin: 10px 0;
+}
+
+.sidebar ul.nav-links li a {
+  color: #fff;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+
+.sidebar ul.nav-links li a i {
+  margin-right: 10px;
+}
+
+.sidebar ul.nav-links li a:hover,
+.sidebar ul.nav-links li.active a {
+  background-color: rgba(255, 255, 255, 0.1);; 
+}
+
+/* Sidebar styling */
+.sidebar {
+  position: fixed;       /* keeps it in place */
+  top: 0;                /* start at the top of the page */
+  left: 0;               /* align to the left */
+  width: 250px;          /* adjust width as needed */
+  height: 100%;          /* fill the height of the viewport */
+  color: white;
+  padding: 20px;
+  overflow-y: auto;      /* allows scrolling inside sidebar if content is long */
+}
+
+/* ===========================
+   Main Content
+=========================== */
+.main-content {
+  margin-left: 250px;
+  flex: 1;
+  padding: 20px 30px;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.header .user-info {
+  display: flex;
+  align-items: center;
+}
+
+.header .user-info div {
+  margin-right: 15px;
+  text-align: right;
+}
+
+.header .user-info h3 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.header .user-info p {
+  margin: 0;
+  font-size: 14px;
+  color: #555;
+}
+
+.header .user-info img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* ===========================
+   Search Form
+=========================== */
+.form-container {
+  background-color: #fff;
+  padding: 15px 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  margin-bottom: 20px;
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  align-items: flex-end;
+}
+
+.form-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.form-group input {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+button.btn.btn-primary {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background-color: #1E90FF;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.2s;
+}
+
+button.btn.btn-primary:hover {
+  background-color: #0d6efd;
+}
+
+/* ===========================
+   Sales Table
+=========================== */
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  padding: 20px;
+}
+
+table.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+/* Headers */
+table.table th {
+  background-color: goldenrod;
+  color: #fff;
+  font-weight: 600;
+  padding: 12px 15px;
+  text-align: left;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  border-bottom: 2px solid #ccc;
+}
+
+/* Body cells */
+table.table td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #eee;
+  vertical-align: middle;
+}
+
+/* Zebra stripes */
+table.table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Hover effect */
+table.table tbody tr:hover {
+  background-color: #e6f2ff;
+  cursor: default;
+}
+
+/* Totals bold */
+table.table td:nth-child(5),
+table.table td:nth-child(6) {
+  font-weight: 600;
+  color: #333;
+}
+
+/* No sales found */
+table.table tbody tr td[colspan="7"] {
+  text-align: center;
+  font-style: italic;
+  color: #666;
+  padding: 20px 0;
+}
+
+/* ===========================
+   Responsive*/
+@media screen and (max-width: 768px) {
+  .form-row {
+    flex-direction: column;
+  }
+
+  .form-group {
+    width: 100%;
+  }
+
+  table.table th,
+  table.table td {
+    padding: 10px 8px;
+    font-size: 13px;
+  }
+}
+
+
+

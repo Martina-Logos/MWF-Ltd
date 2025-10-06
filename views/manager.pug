@@ -1,150 +1,113 @@
-extends layout
-block content
-  //  Key Metrics 
-  .dashboard-widgets
-    .widget
-      .widget-header
-        h3 Today's Sales
-        i.fas.fa-shopping-cart
-      .kpi-value shs.0
-      .kpi-change
-        i.fas.fa-arrow-up
-        |  12.5% from yesterday
+doctype html
+html
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width,initial-scale=1")
+    title MWF Ltd - Manager Dashboard
+    link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css")
+    link(rel="stylesheet", href="/css/manager.css")
+    // Chart.js CDN
+    script(src="https://cdn.jsdelivr.net/npm/chart.js")
 
-    .widget
-      .widget-header
-        h3 Inventory Value
-        i.fas.fa-boxes
-      .kpi-value shs.0
-      .kpi-change
-        i.fas.fa-arrow-down
-        |  3.2% from last week
+  body
+    .container
+      // Sidebar
+      .sidebar
+        .logo
+          h2 Mayondo Wood & Furniture Ltd
+        ul.nav-links
+          li
+            a(href="/manager")
+              i.fas.fa-home
+              | Dashboard
+          li
+            a(href="/recordSales")
+              i.fas.fa-boxes
+              | Record Sales
+          li
+            a(href="/sales")
+              i.fas.fa-shopping-cart
+              | Record Sales
+          li
+            a(href="/salesList")
+              i.fas.fa-list
+              | Sales List
+          li
+            a(href="/stock")
+              i.fas.fa-boxes
+              | Record Stock
+          li
+            a(href="/stockList")
+              i.fas.fa-clipboard-list
+              | Product List
+          li
+            a(href="/orderStock")
+              i.fas.fa-truck-loading
+              | Order Stock
+          li
+            a(href="/user")
+              i.fas.fa-users
+              | Users
+          li.logout
+            a(href="/logout")
+              i.fas.fa-sign-out-alt
+              | Logout
 
-    .widget
-      .widget-header
-        h3 Pending Orders
-        i.fas.fa-clipboard-list
-      .kpi-value 24
-      .kpi-change.negative
-        i.fas.fa-arrow-up
-        |  4 more than yesterday
+      // Main Content
+      .main-content
+        // Header
+        .header
+          h1 Dashboard
+          .user-info
+            div
+              h3 #{currentUser.firstName} #{currentUser.lastName}
+              p #{currentUser.role.charAt(0).toUpperCase() + currentUser.role.slice(1)}
+            img(src="/imgs/Beauty.png", alt="User")
 
-    .widget
-      .widget-header
-        h3 Low Stock Items
-        i.fas.fa-exclamation-triangle
-      .kpi-value 8
-      .kpi-change.negative
-        i.fas.fa-arrow-up
-        |  Needs immediate attention
-  //  Charts 
-  .charts
-    .chart-container
-      .widget-header
-        h3 Sales Overview
-      canvas#salesChart
-    .chart-container
-      .widget-header
-        h3 Product Categories
-      canvas#categoryChart
-  //  Tables 
-  .data-tables
-    .chart-container
-      .widget-header
-        h3 Recent Transactions
-        button.btn.btn-primary View All
-      table.data-table
-        thead
-          tr
-            th Customer
-            th Product
-            th Amount
-            th Status
-        tbody
-          tr
-            td BuildIT Constructions
-            td Timber (Hardwood)
-            td shs.0
-            td
-              span.status.high Completed
-          tr
-            td Home Furniture Ltd
-            td Office Desks
-            td shs.0
-            td
-              span.status.medium Processing
-          tr
-            td City Wood Dealers
-            td Softwood Planks
-            td shs.0
-            td
-              span.status.high Completed
-          tr
-            td Designer Homes
-            td Dining Tables
-            td shs.0
-            td
-              span.status.low Pending
-          tr
-            td QuickBuild Ltd
-            td Poles & Beams
-            td shs.0
-            td
-              span.status.high Completed
-    .chart-container
-      .widget-header
-        h3 Low Stock Alert
-        button.btn.btn-accent Order Now
-      table.data-table
-        thead
-          tr
-            th Product
-            th Current Stock
-            th Required
-            th Action
-        tbody
-          tr
-            td Mahogany Planks
-            td 42 units
-            td 200 units
-            td
-              button.btn.btn-primary Order
-          tr
-            td Oak Timber
-            td 35 units
-            td 150 units
-            td
-              button.btn.btn-primary Order
-          tr
-            td Chair Legs
-            td 120 units
-            td 300 units
-            td
-              button.btn.btn-primary Order
-          tr
-            td Drawer Handles
-            td 85 units
-            td 200 units
-            td
-              button.btn.btn-primary Order
-          tr
-            td 4x4 Beams
-            td 28 units
-            td 100 units
-            td
-              button.btn.btn-primary Order
-  //  Quick Actions 
-  .widget
-    .widget-header
-      h3 Quick Actions
-    .quick-actions
-      .action-btn
-        i.fas.fa-plus-circle
-        span Add New Product
-      .action-btn
-        i.fas.fa-clipboard-list
-        span Generate Report
-      .action-btn
-        i.fas.fa-truck-loading
-        span Order Stock
-  script(src="/javascript/manager.js")
+        // Key Metrics
+        .dashboard-widgets
+          .widget
+            .widget-header
+              h3 Today's Sales
+              i.fas.fa-shopping-cart
+            .kpi-value#salesAmount Loading...
+          .widget
+            .widget-header
+              h3 Total Stock
+              i.fas.fa-boxes
+            .kpi-value#stockValue Loading...
+          .widget
+            .widget-header
+              h3 Low Stock Items
+              i.fas.fa-exclamation-triangle
+            .kpi-value#lowStockItems Loading...
+
+        // Charts Section
+        .charts
+          .chart-container
+            h3 Weekly Sales
+            canvas#salesChart
+          .chart-container
+            h3 Stock by Category
+            canvas#categoryChart
+
+        // Quick Actions
+        .widget
+          .widget-header
+            h3 Quick Actions
+          .quick-actions
+            .action-btn
+              a(href="/stock")
+                i.fas.fa-plus-circle
+                span Add New Product
+            .action-btn
+              a(href="/salesList")
+                i.fas.fa-clipboard-list
+                span Generate Report
+            .action-btn
+              a(href="/orderStock")
+                i.fas.fa-truck-loading
+                span Order Stock
+
+    // JS
+    script(src="/javascript/manager.js")

@@ -1,0 +1,88 @@
+meta(charset="UTF-8")
+meta(name="viewport", content="width=device-width,initial-scale=1")
+title MWF Ltd - Sales List
+link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css")
+link(rel="stylesheet", href="/css/salesList.css")
+
+.container
+  // Sidebar
+  .sidebar
+    .logo
+      h2 Mayondo Wood & Furniture Ltd
+    ul.nav-links
+      li
+        a(href="/salesAgent")
+          i.fas.fa-home
+          |  Dashboard
+      li
+        a(href="/sales")
+          i.fas.fa-cash-register
+          |  Record Sale
+      li.active
+        a(href="/salesList")
+          i.fas.fa-list
+          |  Sales List
+
+  // Main Content
+  .main-content
+    // Header
+    .header
+      h1 Sales List
+      .user-info
+        div
+          h3 Mugerwa Rollins
+          p Sales Attendant
+        img(src="/imgs/salesAgent.jpg", alt="User")
+
+    // Search Form
+    .form-container
+      form(method="get", action="/salesList")
+        .form-row
+          .form-group
+            label(for="productName") Product Name
+            input#productName(
+              type="text",
+              name="productName",
+              placeholder="Search by product name...",
+              value=(query && query.productName) || ''
+            )
+          .form-group
+            label(for="date") Date
+            input#date(
+              type="date",
+              name="date",
+              value=(query && query.date) || ''
+            )
+          button.btn.btn-primary(type="submit")
+            i.fas.fa-search
+            |  Search
+
+    // Sales Table
+    .table-container
+      table.table.table-striped
+        thead
+          tr
+            th Date
+            th Customer
+            th Product
+            th Quantity
+            th Unit Price (shs)
+            th Total (shs)
+            th Sales Agent
+        tbody
+          if !sales || sales.length === 0
+            tr
+              td(colspan="7") No sales found.
+          else
+            each sale in sales
+              - const items = Array.isArray(sale.items) ? sale.items : []
+              each item in items
+                tr
+                  td= sale.saleDate ? new Date(sale.saleDate).toLocaleDateString() : 'No date'
+                  - var customerName = sale.customer && sale.customer.name ? sale.customer.name : 'No customer'
+                  td= customerName
+                  td= item.productName || 'N/A'
+                  td= item.quantity != null ? item.quantity : 'N/A'
+                  td= item.price != null ? item.price.toFixed(2) : '0.00'
+                  td= item.total != null ? item.total.toFixed(2) : '0.00'
+                  td= sale.salesAgent || 'N/A'

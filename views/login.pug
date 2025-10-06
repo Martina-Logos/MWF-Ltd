@@ -1,20 +1,21 @@
 meta(charset="UTF-8")
 meta(name="viewport", content="width=device-width,initial-scale=1")
-title MWF Business Management System - Sign In
-link(href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css", rel="stylesheet", integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr", crossorigin="anonymous")
+title User Login
 link(rel="stylesheet", href="/css/login.css")
-h1 Welcome!
-img.rounded-image(src="/imgs/BrownLogo.png", width="200px", height="200px")
-br
-br
-.form
-  form#glassForm(action="/login", method="post")
-    h4 Email
-    input#email(name="name", type="text")
-    br
-    h4 Password
-    input#password(name="password", type="password")
-    br
-    button(type="submit") Submit
-  p#errorMessage(style="color: red; display: none")
-script(src="/public/javascript/login.js")
+
+.login-container
+  .login-header
+    h1 USER LOGIN
+    p Enter your credentials to access your account
+  // Flash popup (only shows if there's an error_msg)
+  if error_msg
+    script.
+      alert("#{error_msg}");
+  form#loginForm(action="/login" method="post")
+    .form-group
+      label(for="email") Email
+      input#username.form-control(name="email" type="text", placeholder="Enter your email", required)
+    .form-group
+      label(for="password") Password
+      input#password.form-control(name="password" type="password", placeholder="Enter your password", required)
+    button.login-btn(type="submit") LOGIN

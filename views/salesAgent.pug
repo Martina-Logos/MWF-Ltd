@@ -4,8 +4,9 @@ title MWF Ltd - Sales Attendant Dashboard
 link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css")
 script(src="https://cdn.jsdelivr.net/npm/chart.js")
 link(rel="stylesheet", href="/css/salesAgent.css")
+
 .container
-  //  Sidebar 
+  // Sidebar
   .sidebar
     .logo
       h2 Mayondo Wood & Furniture Ltd
@@ -13,29 +14,31 @@ link(rel="stylesheet", href="/css/salesAgent.css")
       li.active
         a(href="/salesAgent")
           i.fas.fa-home
-          |  Dashboard
+          | Dashboard
+      li
+        a(href="/stockList")
+          i.fas.fa-list
+          | Product List   
       li
         a(href="/sales")
-          i.fas.fa-cash-register
-          |  Record Sale
+          i.fas.fa-list
+          | Record Sales 
+      li
+        a(href="/salesList")
+          i.fas.fa-list
+          | Sales List            
       li
         a(href="/invoice")
           i.fas.fa-file-invoice-dollar
-          |  Invoices
-      li.active
+          | Invoices
+      li
         a(href="/customer")
           i.fas.fa-user-plus
-          |  Add Customer
-      li
-        a(href="/receipt")
-          i.fas.fa-boxes
-          |  Receipts
-      //
-         <li><a href="#"><i class="fas fa-users"></i> Customers</a></li>
-                        <li><a href="#"><i class="fas fa-chart-bar"></i> Performance</a></li> 
-  //  Main Content 
+          | Add Customer
+
+  // Main Content
   .main-content
-    //  Header 
+    // Header
     .header
       h1 Dashboard
       .user-info
@@ -43,7 +46,8 @@ link(rel="stylesheet", href="/css/salesAgent.css")
           h3 Mugerwa Rollins
           p Sales Attendant
         img(src="/imgs/salesAgent.jpg", alt="User")
-    //  Product Search 
+
+    // Product Search
     .product-search
       .search-header
         h3 Product Lookup
@@ -51,87 +55,43 @@ link(rel="stylesheet", href="/css/salesAgent.css")
         input(type="text", placeholder="Search products by name, code, or category...")
         button
           i.fas.fa-search
-          |  Search
-    //  Key Metrics 
+          | Search
+
+    // Key Metrics
     .dashboard-widgets
       .widget
         .widget-header
           h3 Today's Sales
           i.fas.fa-shopping-cart
-        .kpi-value shs3,458
-        .kpi-change
-          i.fas.fa-arrow-up
-          |  15.2% from yesterday
+        .kpi-value#todaysSales Loading...
+        .kpi-change#todaysSalesChange
 
       .widget
         .widget-header
           h3 Transactions
           i.fas.fa-receipt
-        .kpi-value 18
-        .kpi-change
-          i.fas.fa-arrow-up
-          |  3 more than yesterday
+        .kpi-value#transactions Loading...
+        .kpi-change#transactionsChange
 
       .widget
         .widget-header
-          h3 Average Transaction
+          h3 Customers
           i.fas.fa-chart-line
-        .kpi-value shs192
-        .kpi-change
-          i.fas.fa-arrow-up
-          |  8.5% from yesterday
+        .kpi-value#customers Loading...
+        .kpi-change#customersChange
 
       .widget
         .widget-header
-          h3 Customer Satisfaction
+          h3 Issued Invoices
           i.fas.fa-smile
-        .kpi-value 94%
-        .kpi-change
-          i.fas.fa-arrow-up
-          |  2% from last week
+        .kpi-value#invoices Loading...
+        .kpi-change#invoicesChange
 
-    //  Customer Highlights 
-    .customer-highlights
-      .customer-card
-        .customer-header
-          img(src="https://xsgames.co/randomusers/avatar.php?g=male&1", alt="Customer")
-          .customer-info
-            h4 BuildIT Constructions
-            p Premium Customer
-        .customer-stats
-          .stat
-            .stat-value shs2400
-            .stat-label Lifetime Value
-          .stat
-            .stat-value 12
-            .stat-label Orders This Month
-      .customer-card
-        .customer-header
-          img(src="https://xsgames.co/randomusers/avatar.php?g=female&2", alt="Customer")
-          .customer-info
-            h4 Home Furniture Ltd
-            p Regular Customer
-        .customer-stats
-          .stat
-            .stat-value shs8000
-            .stat-label Lifetime Value
-          .stat
-            .stat-value 5
-            .stat-label Orders This Month
-      .customer-card
-        .customer-header
-          img(src="https://xsgames.co/randomusers/avatar.php?g=male&3", alt="Customer")
-          .customer-info
-            h4 City Wood Dealers
-            p New Customer
-        .customer-stats
-          .stat
-            .stat-value shs12000
-            .stat-label Lifetime Value
-          .stat
-            .stat-value 2
-            .stat-label Orders This Month
-    //  Charts 
+    // Customer Highlights
+    .customer-highlights#customerHighlights
+      // JS will inject customer cards here dynamically
+
+    // Charts
     .charts
       .chart-container
         .widget-header
@@ -141,7 +101,8 @@ link(rel="stylesheet", href="/css/salesAgent.css")
         .widget-header
           h3 Product Categories
         canvas#categoryChart
-    //  Tables 
+
+    // Tables
     .data-tables
       .chart-container
         .widget-header
@@ -154,37 +115,10 @@ link(rel="stylesheet", href="/css/salesAgent.css")
               th Amount
               th Time
               th Status
-          tbody
+          tbody#recentTransactions
             tr
-              td BuildIT Constructions
-              td shs2,450
-              td 10:24 AM
-              td
-                span.status.completed Completed
-            tr
-              td Home Furniture Ltd
-              td shs1,230
-              td 09:45 AM
-              td
-                span.status.completed Completed
-            tr
-              td Designer Homes
-              td shs3,850
-              td Yesterday
-              td
-                span.status.processing Processing
-            tr
-              td QuickBuild Ltd
-              td shs875
-              td Yesterday
-              td
-                span.status.completed Completed
-            tr
-              td City Wood Dealers
-              td shs1,540
-              td Yesterday
-              td
-                span.status.pending Pending
+              td(colspan="4") Loading...
+
       .chart-container
         .widget-header
           h3 Top Selling Products
@@ -195,28 +129,11 @@ link(rel="stylesheet", href="/css/salesAgent.css")
               th Product
               th Sold
               th Revenue
-          tbody
+          tbody#topProducts
             tr
-              td Mahogany Planks
-              td 42 units
-              td shs5,250
-            tr
-              td Oak Beams
-              td 38 units
-              td shs3,230
-            tr
-              td Office Desks
-              td 12 units
-              td shs4,800
-            tr
-              td Dining Tables
-              td 8 units
-              td shs3,200
-            tr
-              td Pine Wood
-              td 65 units
-              td shs2,275
-    //  Quick Actions 
+              td(colspan="3") Loading...
+
+    // Quick Actions
     .widget
       .widget-header
         h3 Quick Actions
@@ -233,4 +150,6 @@ link(rel="stylesheet", href="/css/salesAgent.css")
         .action-btn
           i.fas.fa-box
           span Check Stock
+
+// Load frontend JS
 script(src="/javascript/salesAgent.js")

@@ -20,11 +20,15 @@ link(rel="stylesheet", href="/css/customer.css")
       li
         a(href="/receipt")
           i.fas.fa-receipt
-          |  Generate Receipt
+          |  Receipt
       li.active
         a(href="/customer")
           i.fas.fa-user-plus
           |  Add Customer
+      li.active
+        a(href="/customerList")
+          i.fas.fa-user-plus
+          |  Customer List    
       li
         a(href="/invoice")
           i.fas.fa-file-invoice-dollar
@@ -129,9 +133,6 @@ link(rel="stylesheet", href="/css/customer.css")
               input#city(type="text", name="city", required, placeholder="e.g., Buildington")
           .form-row
             .form-group
-              label(for="state") State/Province
-              input#state(type="text", name="state", placeholder="e.g., California")
-            .form-group
               label(for="postalCode") Postal Code
               input#postalCode(type="text", name="postalCode", placeholder="e.g., 90210")
           .form-group
@@ -167,9 +168,6 @@ link(rel="stylesheet", href="/css/customer.css")
               option(value="office_furniture") Office Furniture
               option(value="home_furniture") Home Furniture
             p.form-hint Hold Ctrl/Cmd to select multiple options
-          .form-group
-            label(for="notes") Additional Notes
-            textarea#notes(name="notes", placeholder="Any additional information about this customer...")
         //  Form Actions 
         .form-actions
           button.btn.btn-outline#resetForm(type="button")

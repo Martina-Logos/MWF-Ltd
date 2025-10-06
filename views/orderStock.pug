@@ -3,48 +3,44 @@ meta(name="viewport", content="width=device-width,initial-scale=1")
 title MWF Ltd - Order Stock
 link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css")
 link(rel="stylesheet", href="/css/orderStock.css")
-.container
+.container 
   //  Sidebar 
   .sidebar
     .logo
-      h2 Mayondo Wood & Furniture Ltd
+    h2 Mayondo Wood & Furniture Ltd
     ul.nav-links
-      li
-        a(href="/manager")
-          i.fas.fa-home
-          |  Dashboard
-      li
-        a(href="/stock")
-          i.fas.fa-boxes
-          |  Record Stock
-      li.active
-        a(href="/orderStock/new")
-          i.fas.fa-truck-loading
-          |  Order Stock
-      li
-        a(href="/user")
-          i.fas.fa-users
-          |  Users
-      li
-        a(href="/reports")
-          i.fas.fa-chart-bar
-          |  Reports
+        li
+            a(href="/manager")
+                i.fas.fa-home
+                |  Dashboard
+        li
+            a(href="/stock")
+                i.fas.fa-boxes
+                |  Record Stock
+        li.active
+            a(href="/orderStock")
+                i.fas.fa-truck-loading
+                |  Order Stock
+        li
+            a(href="/user")
+                i.fas.fa-users
+                |  Users
   //  Main Content 
   .main-content
     //  Header 
     .header
-      h1 Order Stock
+      h1 Order Stock 
       .user-info
         div
           h3 Tee Mwangi
           p Manager
-        img(src="/imgs/Beauty.png", alt="User")
+        img(src="/imgs/Beauty.png", alt="User")            
     //  Form Container 
     .form-container
       .form-header
         h2 Create Purchase Order
         p Order new stock from your suppliers
-      form#orderForm((action="/orderStock", method="POST", ))
+      form#orderForm((action="/orderStock", method="post", ))
         //  Supplier Information Section 
         .form-section
           h3
@@ -109,11 +105,16 @@ link(rel="stylesheet", href="/css/orderStock.css")
                 td
                   select.product-select(name="product[]", required)
                     option(value) Select Product
-                    option(value="1") Mahogany Timber Plank
-                    option(value="2") Oak Wood Beam
-                    option(value="3") Teak Hardwood
-                    option(value="4") Pine Wood
-                    option(value="5") Plywood Sheet
+                    option(value="1") Storage cabins
+                    option(value="2") Ebony Planks
+                    option(value="3") Pine Logs
+                    option(value="4") Plywood
+                    option(value="5") Cedar Beams
+                    option(value="6") Poles
+                    option(value="7") Dining tables
+                    option(value="8") Cupboards
+                    option(value="9") Beds
+                    option(value="10") Book shelves
                 td
                   input(type="number", name="quantity[]", min="1", value="1", required)
                 td
@@ -130,30 +131,26 @@ link(rel="stylesheet", href="/css/orderStock.css")
         .form-section
           h3
             i.fas.fa-shipping-fast
-            |  Shipping Information
+            |  Transport Information
           .form-row
             .form-group
-              label(for="shippingMethod") Shipping Method
-              select#shippingMethod(name="shippingMethod")
+              label(for="transportMethod") Transport Method
+              select#transportMethod(name="transportMethod")
                 option(value) Select Method
-                option(value="pickup") Supplier Pickup
                 option(value="delivery", selected) Supplier Delivery
                 option(value="courier") Courier Service
                 option(value="freight") Freight Service
             .form-group
-              label(for="shippingCost") Shipping Cost ($)
-              input#shippingCost(type="number", name="shippingCost", step="0.01", min="0", value="0.00")
-          .form-group
-            label(for="notes") Order Notes
-            textarea#notes(name="notes", placeholder="Any special instructions for this order...")
+              label(for="deliveryCost") Delivery Cost (shs)
+              input#deliveryCost(type="number", name="deliveryCost", step="0.01", min="0", value="0.00")
         //  Summary Section 
         .order-summary
           .summary-row
             span Subtotal:
             span shs0.00
           .summary-row
-            span Shipping Cost:
-            span#shippingDisplay shs0.00
+            span Delivery Cost:
+            span#deliveryDisplay shs0.00
           .summary-row.total
             span Order Total:
             span#orderTotal shs0.00
@@ -162,10 +159,6 @@ link(rel="stylesheet", href="/css/orderStock.css")
           button.btn.btn-outline(type="button")
             i.fas.fa-times
             |  Cancel
-
-          button.btn.btn-primary(type="button")
-            i.fas.fa-print
-            |  Print PO
 
           button.btn.btn-success(type="submit")
             i.fas.fa-paper-plane

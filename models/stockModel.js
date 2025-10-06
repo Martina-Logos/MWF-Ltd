@@ -1,44 +1,56 @@
+// stockModel.js
 const mongoose = require("mongoose");
 
-const stockSchema = new mongoose.Schema({
-  productName: {
-    type: String,
-    required: true,
+const stockSchema = new mongoose.Schema(
+  {
+    productName: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    productType: {
+      type: String,
+      required: true,
+      enum: ["timber", "poles", "hardwood", "softwood", "furniture", "other"],
+    },
+    costPrice: {
+      type: Number,
+      required: false,
+      min: [0, "Cost price cannot be negative"],
+    },
+    sellingPrice: {
+      type: Number,
+      required: true,
+      min: [0, "Selling price cannot be negative"],
+    },
+    quantity: {
+      type: Number,
+      required: [true, "Quantity is required"],
+      min: [1, "Quantity must be at least 1"],
+    },
+    supplierName: {
+      type: String,
+      required: false,
+      trim: true,
+    },
+    supplierContact: {
+      type: String,
+      trim: true,
+    },
+    quality: {
+      type: String,
+      required: [true, "Quality grade is required"],
+      enum: ["premium", "standard", "economy"],
+    },
+    color: {
+      type: String,
+      trim: true,
+    },
   },
-  productType: {
-    type: String,
-    enum: ["timber", "poles", "hardwood", "softwood", "furniture", "other"],
-    required: true,
-  },
-  costPrice: {
-    type: Number,
-    required: true,
-  },
-  sellingPrice: {
-    type: Number,
-    required: true,
-  },
-  quantity: {
-    type: Number,
-    enum: ["premium", "standard", "economy"],
-    required: true,
-  },
-  supplierName: {
-    type: String,
-    required: true,
-  },
-  supplierContact: {
-    type: String,
-    required: true,
-  },
-  quality: {
-    type: String,
-    required: true,
-  },
-  color: {
-    type: String,
-    required: true,
-  },
-});
+  {
+    timestamps: true, // adds createdAt & updatedAt automatically
+  }
+);
 
-module.exports = mongoose.model("StockModel", stockSchema);
+module.exports= mongoose.model("Stock", stockSchema);
+

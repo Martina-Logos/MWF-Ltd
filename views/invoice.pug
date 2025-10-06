@@ -1,10 +1,11 @@
 meta(charset="UTF-8")
-meta(name="viewport", content="width=device-width,initial-scale=1")
+meta(name="viewport", content="width=device-width, initial-scale=1")
 title MWF Ltd - Create Invoice
 link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css")
-link(rel="stylesheet", href="/public/css/invoice.css")
+link(rel="stylesheet", href="/css/invoice.css")
+
 .container
-  //  Sidebar 
+  // Sidebar
   .sidebar
     .logo
       h2 Mayondo Wood & Furniture Ltd
@@ -12,168 +13,118 @@ link(rel="stylesheet", href="/public/css/invoice.css")
       li
         a(href="/salesAgent")
           i.fas.fa-home
-          |  Dashboard
+          | Dashboard
       li
         a(href="/sales")
-          i.fas.fa-boxes
-          |  Record Sale
+          i.fas.fa-cash-register
+          | Record Sale
       li.active
         a(href="/invoice")
           i.fas.fa-file-invoice-dollar
-          |  Invoices
+          | Invoices
+      li
+        a(href="/customer")
+          i.fas.fa-user-plus
+          | Add Customer
       li
         a(href="/receipt")
-          i.fas.fa-truck
-          |  Receipts
+          i.fas.fa-boxes
+          | Receipts
       li
-        a(href="#")
-          i.fas.fa-chart-bar
-          |  Reports
-  //  Main Content 
+        a(href="/salesList")
+          i.fas.fa-list
+          | Sales List
+
+  // Main Content
   .main-content
-    //  Header 
     .header
       h1 Create Invoice
       .user-info
         div
-          h3 Tee Mwangi
-          p Manager
+          h3 Mugerwa Rollins
+          p Sales Attendant
         img(src="/imgs/salesAgent.jpg", alt="User")
-    //  Form Container 
-    .form-container
-      .form-header
-        h2 Create New Invoice
-        p Generate a professional invoice for your customer
-      form#invoiceForm(action="/invoice" method="post")
-        //  Customer Information Section 
-        .form-section
-          h3
-            i.fas.fa-user
-            |  Customer Information
-          .form-row
-            .form-group
-              label.required(for="customerName") Customer Name
-              input#customerName(type="text", name="customerName", required, placeholder="e.g., BuildIT Constructions")
-            .form-group
-              label(for="customerContact") Contact Person
-              input#customerContact(type="text", name="customerContact", placeholder="Name of contact person")
-          .form-row
-            .form-group
-              label(for="customerAddress") Address
-              input#customerAddress(type="text", name="customerAddress", placeholder="Customer\'s address")
-            .form-group
-              label(for="customerPhone") Phone Number
-              input#customerPhone(type="tel", name="customerPhone", placeholder="Customer\'s phone number")
-        //  Invoice Details Section 
-        .form-section
-          h3
-            i.fas.fa-file-invoice
-            |  Invoice Details
-          .form-row
-            .form-group
-              label(for="invoiceNumber") Invoice Number
-              input#invoiceNumber(type="text", name="invoiceNumber", value="INV-2023-0085", readonly)
-            .form-group
-              label.required(for="invoiceDate") Invoice Date
-              input#invoiceDate(type="date", name="invoiceDate", required, value="2023-11-15")
-            .form-group
-              label.required(for="dueDate") Due Date
-              input#dueDate(type="date", name="dueDate", required, value="2023-11-29")
-          .form-row
-            .form-group
-              label.required(for="salesAgent") Sales Agent
-              input#salesAgent(type="text", name="salesAgent", required, value="John Manager", readonly)
-            .form-group
-              label.required(for="paymentMethod") Payment Method
-              select#paymentMethod(name="paymentMethod", required)
-                option(value) Select Method
-                option(value="cash") Cash
-                option(value="cheque") Cheque
-                option(value="bank_transfer", selected) Bank Transfer
-                option(value="bank_overdraft") Bank Overdraft
-        //  Invoice Items Section 
-        .form-section
-          h3
-            i.fas.fa-box
-            |  Items
-          table.invoice-items
-            thead
-              tr
-                th(width="40%") Product
-                th(width="15%") Quantity
-                th(width="15%") Unit Price (shs)
-                th(width="20%") Total (shs)
-                th(width="10%") Actions
-            tbody#itemsTableBody
-              tr
-                td
-                  select.product-select(name="product[]", required)
-                    option(value) Select Product
-                    option(value="1", selected) Mahogany Timber Plank
-                    option(value="2") Oak Wood Beam
-                    option(value="3") Teak Hardwood
-                    option(value="4") Office Desk
-                    option(value="5") Dining Table
-                td
-                  input(type="number", name="quantity[]", min="1", value="20", required)
-                td
-                  input(type="number", name="price[]", step="0.01", min="0", value="125.00", required)
-                td shs.2000
-                td.item-actions
-                  button.btn-remove(type="button")
-                    i.fas.fa-trash
-              tr
-                td
-                  select.product-select(name="product[]", required)
-                    option(value) Select Product
-                    option(value="1") Mahogany Timber Plank
-                    option(value="2", selected) Oak Wood Beam
-                    option(value="3") Teak Hardwood
-                    option(value="4") Office Desk
-                    option(value="5") Dining Table
-                td
-                  input(type="number", name="quantity[]", min="1", value="10", required)
-                td
-                  input(type="number", name="price[]", step="0.01", min="0", value="85.50", required)
-                td shs.10000
-                td.item-actions
-                  button.btn-remove(type="button")
-                    i.fas.fa-trash
-          button#addItemBtn.btn.btn-outline(type="button", style="margin-top: 15px;")
-            i.fas.fa-plus
-            |  Add Item
 
-        //  Transport Option 
-        .form-section
-          h3
-            i.fas.fa-truck
-            |  Delivery Options
-          .transport-fee
-            input#provideTransport(type="checkbox", name="provideTransport")
-            label(for="provideTransport") MWF will provide transport (adds 5% transport fee)
-        //  Summary Section 
-        .invoice-summary
-          .summary-row
-            span Subtotal:
-            span shs.000.00
-          .summary-row#transportRow(style="display: none;")
-            span Transport Fee (5%):
-            span shs000.00
-          .summary-row.total
-            span Total Amount:
-            span#totalAmount shs000.00
-        //  Form Actions 
-        .form-actions
-          button.btn.btn-outline(type="button")
-            i.fas.fa-times
-            |  Cancel
+    form#invoiceForm(action="/invoice" method="POST")
+      // Invoice Info
+      .form-section
+        h3 Invoice Info
+        label(for="invoiceNumber") Invoice Number
+        input(type="text" name="invoiceNumber" id="invoiceNumber" required placeholder="INV-0001")
 
-          button.btn.btn-primary(type="button")
-            i.fas.fa-file-pdf
-            |  Preview Invoice
+        label(for="invoiceDate") Invoice Date
+        input(type="date" name="invoiceDate" id="invoiceDate" required)
 
-          button.btn.btn-success(type="submit")
-            i.fas.fa-check
-            |  Create Invoice
+        label(for="dueDate") Due Date
+        input(type="date" name="dueDate" id="dueDate")
 
+      // Customer Info
+      .form-section
+        h3 Customer Info
+        label(for="customerName") Customer Name
+        input(type="text" name="customerName" id="customerName" required)
+
+        label(for="customerCompany") Company Name
+        input(type="text" name="customerCompany" id="customerCompany")
+
+        label(for="customerPhone") Phone
+        input(type="text" name="customerPhone" id="customerPhone")
+
+        label(for="customerAddress") Address
+        input(type="text" name="customerAddress" id="customerAddress")
+
+      // Items
+      .form-section
+        h3 Invoice Items
+        table#invoiceItemsTable
+          thead
+            tr
+              th Description
+              th Quantity
+              th Unit Price
+              th Total
+              th Action
+          tbody
+            tr
+              td
+                input(type="text" name="items[0][description]" required)
+              td
+                input(type="number" name="items[0][quantity]" min="1" value="1" required)
+              td
+                input(type="number" name="items[0][price]" min="0" value="0" required)
+              td
+                input(type="number" name="items[0][total]" value="0" readonly)
+              td
+                button(type="button" class="removeItem") Remove
+        button#addItemBtn(type="button") Add Item
+
+      // Totals
+      .form-section
+        label(for="subtotal") Subtotal
+        input(type="number" name="subtotal" id="subtotal" value="0" readonly)
+
+        label(for="tax") Tax (18%)
+        input(type="number" name="tax" id="tax" value="0" readonly)
+
+        label(for="discount") Discount
+        input(type="number" name="discount" id="discount" value="0")
+
+        label(for="total") Grand Total
+        input(type="number" name="total" id="total" value="0" readonly)
+
+      // Notes
+      .form-section
+        label(for="notes") Notes
+        textarea(name="notes" id="notes" placeholder="Any additional notes...")
+
+      // Actions
+      .form-actions
+        button(type="submit" class="btn btn-primary")
+          i.fas.fa-save
+          | Save Invoice
+        button(type="reset" class="btn btn-secondary")
+          i.fas.fa-undo
+          | Reset Form
+
+// Load frontend JS for dynamic item rows & calculations
 script(src="/javascript/invoice.js")

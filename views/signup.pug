@@ -1,0 +1,67 @@
+doctype html
+html
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width,initial-scale=1")
+    title MWF Ltd - Manager Dashboard
+    link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css")
+    script(src="https://cdn.jsdelivr.net/npm/chart.js")
+    link(rel="stylesheet", href="/css/signup.css")
+  body
+    .form-container
+      .form-header
+        h2 Add New User
+        p Create a new user account for system access
+
+      form#userForm(action="/signup", method="post")
+        // Personal Information Section
+        .form-section
+          h3
+            i.fas.fa-user
+            |  Personal Information
+          .form-row
+            .form-group
+              label.required(for="firstName") First Name
+              input#firstName(type="text", name="firstName", required)
+            .form-group
+              label.required(for="lastName") Last Name
+              input#lastName(type="text", name="lastName", required)
+          .form-row
+            .form-group
+              label.required(for="email") Email Address
+              input#email(type="email", name="email", required)
+            .form-group
+              label(for="phone") Phone Number
+              input#phone(type="tel", name="phone")
+            .form-group
+              label.required(for="password") Password
+              input#password(type="password", name="password", required)
+            .form-group
+              label.required(for="role") User Role
+              select#role(name="role", required)
+                option(value="") Select Role
+                option(value="manager") Manager
+                option(value="attendant") Attendant
+              p.form-hint Managers have full access, attendants have limited access
+
+        // Permissions Section
+        .form-section
+          h3
+            i.fas.fa-shield-alt
+            |  Permissions
+          .form-group
+            label System Access
+            .permissions(style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 10px; margin-top: 10px;")
+              div
+                input#inventoryAccess(type="checkbox", name="inventoryAccess", checked)
+                label(for="inventoryAccess") Stock Management
+              div
+                input#salesAccess(type="checkbox", name="salesAccess", checked)
+                label(for="salesAccess") Sales & Invoicing
+        .form-actions
+          button.btn.btn-success(type="submit")
+            i.fas.fa-user-plus
+            |  Create User
+          button.btn.btn-secondary(type="button" onclick="window.location.href='/user'" style="margin-left:10px;")
+            i.fas.fa-arrow-left
+            |  Back

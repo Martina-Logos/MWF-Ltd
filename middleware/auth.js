@@ -1,25 +1,62 @@
-//ensure the user is authenticated
-exports.ensureauthenticated = (req, res, next) => {
-  if (req.session.user) {
+// // Ensure the user is authenticated
+// exports.ensureAuthenticated = (req, res, next) => {
+//   if (req.isAuthenticated()) {
+//     return next();
+//   }
+//   res.redirect("/signup"); // or "/login"
+// };
+
+// // Ensure user is a Sales Agent
+// exports.ensureAgent = (req, res, next) => {
+//   if (req.isAuthenticated() && req.user.role === "attendant") {
+//     return next();
+//   }
+//   res.redirect("/");
+// };
+
+// // Ensure user is a Manager
+// exports.ensureManager = (req, res, next) => {
+//   if (req.isAuthenticated() && req.user.role === "manager") {
+//     return next();
+//   }
+//   res.redirect("/");
+// };
+
+function ensureAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) return next();
+  req.flash("error_msg", "Please log in first.");
+  return res.redirect("/login");
+}
+
+function ensureManager(req, res, next) {
+  if (req.isAuthenticated() && req.user.role === "manager") return next();
+  return res.status(403).render("accessDenied", { message: "Managers only." });
+}
+
+function ensureSalesAgent(req, res, next) {
+  if (req.isAuthenticated() && req.user.role === "attendant") return next();
+  return res
+    .status(403)
+    .render("accessDenied", { message: "Sales Agents only." });
+}
+
+// Middleware for shared pages
+function ensureManagerOrSalesAgent(req, res, next) {
+  if (
+    req.isAuthenticated() &&
+    (req.user.role === "manager" || req.user.role === "attendant")
+  )
     return next();
-  }
-  res.redirect("/signup");
+  return res
+    .status(403)
+    .render("accessDenied", { message: "Unauthorized access." });
+}
+
+module.exports = {
+  ensureAuthenticated,
+  ensureManager,
+  ensureSalesAgent,
+  ensureManagerOrSalesAgent,
 };
 
-//ensure user is a Sales Agent
-exports.ensureAgent = (req, res, next) => {
-  if (req.session.user && req.session.role === "Sales Agent") {
-    //make sure the name written on the role matches with the one saved in the database. It shouldn't be the manager but that other person handling either sales or sale.
-    return next();
-  }
-  res.redirect("/");
-};
 
-//ensure user is a Manager
-exports.ensureManager = (req, res, next) => {
-  if (req.session.user && req.session.role === "Manager") {
-    //make sure the name written on the role matches with the one saved in the database. It should only be the manager.
-    return next();
-  }
-  res.redirect("/");
-};

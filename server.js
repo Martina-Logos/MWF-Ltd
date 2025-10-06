@@ -1,4 +1,4 @@
-//1.Dependencies
+// 1. Dependencies
 const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
@@ -7,101 +7,100 @@ const expressSession = require("express-session");
 const MongoStore = require("connect-mongo");
 const moment = require("moment");
 const methodOverride = require("method-override");
+const flash = require("connect-flash");
 
 require("dotenv").config();
 
-//import models
-const userModel = require("./models/userModel");
-const stockModel = require("./models/stockModel");
-const orderStockModel = require("./models/orderStockModel");
-const salesModel = require("./models/salesModel");
-const loginModel = require("./models/loginModel");
+// 2. Models
+const UserModel = require("./models/userModel");
+const Stock = require("./models/stockModel");
+const Sales = require("./models/salesModel");
+const OrderStock = require("./models/orderStockModel");
+const Invoice = require("./models/invoiceModel");
+const Customer = require("./models/customerModel");
 
-//import routes
-const loginRoutes = require("./routes/loginRoutes");
+// 3. Routes
+const authRoutes = require("./routes/authRoutes");
 const stockRoutes = require("./routes/stockRoutes");
 const salesRoutes = require("./routes/salesRoutes");
-const indexRoutes = require("./routes/indexRoutes");
 const orderStockRoutes = require("./routes/orderStockRoutes");
+const invoiceRoutes = require("./routes/invoiceRoutes");
+const customerRoutes = require("./routes/customerRoutes");
 const userRoutes = require("./routes/userRoutes");
-const reportsRoutes = require("./routes/reportsRoutes");
+const salesDashRoutes = require("./routes/salesDashRoutes");
 
-
-//2.Instantiations
+// 4. Instantiation
 const app = express();
-const port = 3000;
+const port = 3001;
 
-//3.Configurations
+// 5. Configurations
 app.locals.moment = moment;
 
-//Setting up mongodb connection
-mongoose.connect(process.env.MONGODB_URL, {
-  // useNewUrlParser: true,
-  // useUnifiedTopology: true,
-});
-
+// Connect to MongoDB
+mongoose.connect(process.env.MONGODB_URL, {});
 mongoose.connection
-  .on("open", () => {
-    console.log("Mongoose successfully connected");
-  })
-  .on("error", (err) => {
-    console.log(`Connection error: ${err.message}`);
-  });
+  .on("open", () => console.log("Mongoose successfully connected"))
+  .on("error", (err) => console.log(`Connection error: ${err.message}`));
 
-//setting view engine to pug
+// Set view engine
 app.set("view engine", "pug");
 app.set("views", path.join(__dirname, "views"));
 
-//non existent route handler
-// app.use((req, res) => {
-//   res.status(404).send(`Oops! Route not found.`);
-// });
 
-//4. Middleware
-// app.use(express.static("public"));     //static files
+// 6. Middleware
+// Static files
 app.use(express.static(path.join(__dirname, "public")));
-app.use(express.urlencoded({ extended: true })); //Helps to pass data from forms
+
+// Body parser
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-//express session configs
+// Method override 
+app.use(methodOverride("_method"));
+
+//SESSION SETUP (must come BEFORE flash!) 
 app.use(
   expressSession({
-    secret: process.env.SESSION_SECRET,
+    secret: process.env.SESSION_SECRET || "yourSecretKey",
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true,
     store: MongoStore.create({ mongoUrl: process.env.MONGODB_URL }),
-    cookie: { maxAge: 24 * 60 * 60 * 1000 }, //what we've specified mas how long the cookie hould run in the browser. 24-the number of hours in a day, 60-minutes in an hour, 60-seconds in a minute, 1000-number of milliseconds in a second
+    cookie: { maxAge: 24 * 60 * 60 * 1000 }, // 1 day
   })
 );
 
-//passport configs
+// FLASH SETUP
+app.use(flash());
+
+// Global flash variables for templates
+app.use((req, res, next) => {
+  res.locals.success_msg = req.flash("success_msg");
+  res.locals.error_msg = req.flash("error_msg");
+  next();
+});
+
+// PASSPORT
 app.use(passport.initialize());
 app.use(passport.session());
 
-//authenticate with passport local strategy
-passport.use(loginModel.createStrategy());
-passport.serializeUser(loginModel.serializeUser());
-passport.deserializeUser(loginModel.deserializeUser());
+passport.use(UserModel.createStrategy());
+passport.serializeUser(UserModel.serializeUser());
+passport.deserializeUser(UserModel.deserializeUser());
 
-
-//5. Routes
-//Using imported routes
-app.use("/", loginRoutes);
+// ROUTES
+app.use("/", authRoutes);
 app.use("/", stockRoutes);
 app.use("/", salesRoutes);
-app.use("/", indexRoutes);
 app.use("/", orderStockRoutes);
+app.use("/", invoiceRoutes);
+app.use("/", customerRoutes);
 app.use("/", userRoutes);
-app.use("/", reportsRoutes);
+app.use("/", salesDashRoutes);
 
-
-//non existent route handler second last
+// 404 handler
 app.use((req, res) => {
   res.status(404).send("Oops! Route not found");
 });
 
-//6. Bootstrapping Server
-// //This line should always be the last line in this file.
-app.listen(port, () =>
-  console.log(`listening on port http://localhost/${port}`)
-);
+// 7. Bootstrapping Server
+app.listen(port, () => console.log(`Listening on http://localhost:${port}`));

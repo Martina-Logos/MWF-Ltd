@@ -3,8 +3,9 @@ meta(name="viewport", content="width=device-width,initial-scale=1")
 title MWF Ltd - Add New Product
 link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css")
 link(rel="stylesheet", href="/css/stock.css")
+
 .container
-  //  Sidebar 
+  // Sidebar
   .sidebar
     .logo
       h2 Mayondo Wood & Furniture Ltd
@@ -25,13 +26,10 @@ link(rel="stylesheet", href="/css/stock.css")
         a(href="/user")
           i.fas.fa-users
           |  Users
-      li
-        a(href="/reports")
-          i.fas.fa-chart-bar
-          |  Reports
-  //  Main Content 
+
+  // Main Content
   .main-content
-    //  Header 
+    // Header
     .header
       h1 Add New Product
       .user-info
@@ -39,13 +37,21 @@ link(rel="stylesheet", href="/css/stock.css")
           h3 Tee Mwangi
           p Manager
         img(src="/imgs/Beauty.png", alt="User")
-    //  Form Container 
+
+    // Form Container
     .form-container
       .form-header
         h2 Add New Product to Inventory
         p Fill in the details below to add a new product to the inventory system
+
+      // Display errors if any
+      if errors
+        ul.error-list
+          each err in errors
+            li.error-message= err
+
       form#addProductForm(action="/stock", method="post")
-        //  Basic Information Section 
+        // Basic Information
         .form-section
           h3
             i.fas.fa-info-circle
@@ -53,48 +59,83 @@ link(rel="stylesheet", href="/css/stock.css")
           .form-row
             .form-group
               label.required(for="productName") Product Name
-              input#productName(type="text", name="productName", required, placeholder="e.g., Mahogany Timber Plank")
+              input#productName(
+                type="text", 
+                name="productName", 
+                required, 
+                value=(formData && formData.productName ? formData.productName : '')
+              )
             .form-group
               label.required(for="productType") Product Type
               select#productType(name="productType", required)
-                option(value) Select Type
-                option(value="timber") Timber
-                option(value="poles") Poles
-                option(value="hardwood") Hardwood
-                option(value="softwood") Softwood
-                option(value="furniture") Furniture
-                option(value="other") Other
-        //  Pricing & Stock Section 
+                option(value="" disabled) Select Type
+                option(value="timber", selected=(formData && formData.productType==='timber')) Timber
+                option(value="poles", selected=(formData && formData.productType==='poles')) Poles
+                option(value="hardwood", selected=(formData && formData.productType==='hardwood')) Hardwood
+                option(value="softwood", selected=(formData && formData.productType==='softwood')) Softwood
+                option(value="furniture", selected=(formData && formData.productType==='furniture')) Furniture
+                option(value="other", selected=(formData && formData.productType==='other')) Other
+
+        // Pricing & Stock
         .form-section
           h3
             i.fas.fa-tags
             |  Pricing & Stock
           .form-row
             .form-group
-              label.required(for="costPrice") Cost Price (shs)
-              input#costPrice(type="number", name="costPrice", step="0.01", min="0", required, placeholder="0.00")
+              label(for="costPrice") Cost Price (shs)
+              input#costPrice(
+                type="number", 
+                name="costPrice", 
+                step="0.01", 
+                min="0", 
+                value=(formData && formData.costPrice ? formData.costPrice : 0)
+              )
               p.form-hint The price at which we acquire the product
             .form-group
               label.required(for="sellingPrice") Selling Price (shs)
-              input#sellingPrice(type="number", name="sellingPrice", step="0.01", min="0", required, placeholder="0.00")
+              input#sellingPrice(
+                type="number", 
+                name="sellingPrice", 
+                step="0.01", 
+                min="0", 
+                required, 
+                value=(formData && formData.sellingPrice ? formData.sellingPrice : '')
+              )
               p.form-hint The price at which we sell the product
           .form-row
             .form-group
               label.required(for="quantity") Quantity
-              input#quantity(type="number", name="quantity", min="1", required, placeholder="0")
-        //  Supplier Information Section 
+              input#quantity(
+                type="number", 
+                name="quantity", 
+                min="1", 
+                required, 
+                value=(formData && formData.quantity ? formData.quantity : 1)
+              )
+
+        // Supplier Information
         .form-section
           h3
             i.fas.fa-truck
             |  Supplier Information
           .form-row
             .form-group
-              label.required(for="supplierName") Supplier Name
-              input#supplierName(type="text", name="supplierName", required, placeholder="e.g., Timberland Suppliers")
+              label(for="supplierName") Supplier Name
+              input#supplierName(
+                type="text", 
+                name="supplierName", 
+                value=(formData && formData.supplierName ? formData.supplierName : '')
+              )
             .form-group
               label(for="supplierContact") Supplier Contact
-              input#supplierContact(type="text", name="supplierContact", placeholder="Phone or email")
-        //  Additional Details Section 
+              input#supplierContact(
+                type="text", 
+                name="supplierContact", 
+                value=(formData && formData.supplierContact ? formData.supplierContact : '')
+              )
+
+        // Additional Details
         .form-section
           h3
             i.fas.fa-sliders-h
@@ -103,21 +144,23 @@ link(rel="stylesheet", href="/css/stock.css")
             .form-group
               label.required(for="quality") Quality Grade
               select#quality(name="quality", required)
-                option(value) Select Quality
-                option(value="premium") Premium
-                option(value="standard") Standard
-                option(value="economy") Economy
+                option(value="" disabled) Select Quality
+                option(value="premium", selected=(formData && formData.quality==='premium')) Premium
+                option(value="standard", selected=(formData && formData.quality==='standard')) Standard
+                option(value="economy", selected=(formData && formData.quality==='economy')) Economy
             .form-group
               label(for="color") Color
-              input#color(type="text", name="color", placeholder="e.g., Dark Brown")
-        //  Form Actions 
+              input#color(
+                type="text", 
+                name="color", 
+                value=(formData && formData.color ? formData.color : '')
+              )
+
+        // Form Actions
         .form-actions
-          button.btn.btn-outline(type="button")
+          button.btn.btn-outline(type="button", onclick="window.history.back()")
             i.fas.fa-times
             |  Cancel
-
           button.btn.btn-primary(type="submit")
             i.fas.fa-plus-circle
             |  Add Product
-
-script(src="/javascript/stock.js")
