@@ -53,3 +53,7 @@ const categoryChart = new Chart(categoryCtx, {
     },
   },
 });
+
+
+
+
