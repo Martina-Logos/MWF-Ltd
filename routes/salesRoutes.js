@@ -166,10 +166,7 @@ const express = require("express");
 const router = express.Router();
 const StockModel = require("../models/stockModel");
 const SalesModel = require("../models/salesModel");
-const {
-  ensureAuthenticated,
-  ensureManagerOrSalesAgent,
-} = require("../middleware/auth");
+const {ensureAuthenticated, ensureManagerOrSalesAgent,} = require("../middleware/auth");
 
 // @desc    Render the sales form (only accessible to authenticated users)
 router.get("/sales", ensureAuthenticated, async (req, res) => {

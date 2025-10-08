@@ -1,0 +1,57 @@
+doctype html
+html
+  head
+    title MWF Ltd - Create Schedule
+    link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css")
+    link(rel="stylesheet", href="/css/schedule.css")
+  body
+    .container
+      // Sidebar
+      .sidebar
+        .logo
+          h2 Mayondo Wood & Furniture Ltd
+        ul.nav-links
+          li
+            a(href="/manager")
+              i.fas.fa-home
+              | Dashboard
+          li
+            a(href="/schedule")
+              i.fas.fa-calendar-plus
+              | Create Schedule
+          li
+            a(href="/scheduleList")
+              i.fas.fa-table
+              | Schedule List
+
+      // Main Content
+      .main-content
+        .header
+          h1 Create Schedule
+          .user-info
+            div
+              h3= user.name
+              p= user.role
+            img(src="/imgs/Beauty.png", alt="User")
+
+        // Schedule Form
+        form(action="/schedule" method="POST")
+          label(for="assignedAttendant") Assigned Attendant
+          input(type="text" name="assignedAttendant" placeholder="Enter attendant name" required)
+
+          label(for="type") Type of Work
+          select(name="type" required)
+            option(value="") -- Select Type --
+            option(value="Loading") Loading
+            option(value="Offloading") Offloading
+
+          label(for="products") Products Delivered / Sold
+          textarea(name="products" rows="3" placeholder="E.g. 10 Poles, 5 Chairs" required)
+
+          label(for="date") Date
+          input(type="date" name="date" required)
+
+          label(for="time") Time
+          input(type="time" name="time" required)
+
+          button(type="submit") Assign Schedule

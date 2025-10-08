@@ -34,14 +34,31 @@ function ensureManager(req, res, next) {
 }
 
 function ensureSalesAgent(req, res, next) {
-  if (req.isAuthenticated() && req.user.role === "attendant") return next();
+  if (req.isAuthenticated() && req.user.role === "salesAgent") return next();
   return res
     .status(403)
     .render("accessDenied", { message: "Sales Agents only." });
 }
 
+// New: Attendant middleware
+function ensureAttendant(req, res, next) {
+  if (req.isAuthenticated() && req.user.role === "attendant") return next();
+  return res.status(403).render("accessDenied", { message: "Attendants only." });
+}
+
 // Middleware for shared pages
 function ensureManagerOrSalesAgent(req, res, next) {
+  if (
+    req.isAuthenticated() &&
+    (req.user.role === "manager" || req.user.role === "salesAgent")
+  )
+    return next();
+  return res
+    .status(403)
+    .render("accessDenied", { message: "Unauthorized access." });
+}
+
+function ensureManagerOrAttendant(req, res, next) {
   if (
     req.isAuthenticated() &&
     (req.user.role === "manager" || req.user.role === "attendant")
@@ -56,7 +73,9 @@ module.exports = {
   ensureAuthenticated,
   ensureManager,
   ensureSalesAgent,
+  ensureAttendant,
   ensureManagerOrSalesAgent,
+  ensureManagerOrAttendant,
 };
 
 

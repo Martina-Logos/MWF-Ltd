@@ -14,13 +14,13 @@ link(rel="stylesheet", href="/css/orderStock.css")
                 i.fas.fa-home
                 |  Dashboard
         li
-            a(href="/stock")
-                i.fas.fa-boxes
-                |  Record Stock
-        li.active
             a(href="/orderStock")
-                i.fas.fa-truck-loading
+                i.fas.fa-boxes
                 |  Order Stock
+        li.active
+            a(href="/orderList")
+                i.fas.fa-truck-loading
+                |  Order List
         li
             a(href="/user")
                 i.fas.fa-users
@@ -51,11 +51,11 @@ link(rel="stylesheet", href="/css/orderStock.css")
               label.required(for="supplier") Select Supplier
               select#supplier(name="supplier", type="text" required)
                 option(value) Select a Supplier
-                option(value="1") Timberland Suppliers
+                option(value="1") Clement Suppliers
                 option(value="2") Premium Woods Ltd
                 option(value="3") Forest Products Co.
-                option(value="4") Hardwood Importers
-                option(value="5") Furniture Components Inc.
+                option(value="4") Deno Importers
+                option(value="5") Tendo Furniture Inc.
             .form-group
               label.required(for="orderDate") Order Date
               input#orderDate(type="date", name="orderDate", required)

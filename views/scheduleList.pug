@@ -1,0 +1,73 @@
+doctype html
+html
+  head
+    title MWF Ltd - Schedule List
+    link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css")
+    link(rel="stylesheet", href="/css/scheduleList.css")
+  body
+    .container
+      // Sidebar
+      .sidebar
+        .logo
+          h2 Mayondo Wood & Furniture Ltd
+        ul.nav-links
+          if user.role === 'manager'
+            li
+              a(href="/manager")
+                i.fas.fa-home
+                | Dashboard
+            li
+              a(href="/schedule")
+                i.fas.fa-calendar-plus
+                | Create Schedule
+            li
+              a(href="/scheduleList" class="active")
+                i.fas.fa-table
+                | Schedule List
+          else if user.role === 'attendant'
+            li
+              a(href="/attendants")
+                i.fas.fa-home
+                | Dashboard
+            li
+              a(href="/scheduleList" class="active")
+                i.fas.fa-calendar-check
+                | My Schedule
+
+      // Main content
+      .main-content
+        .header
+          if user.role === 'manager'
+            h1 All Schedules
+          else
+            h1 My Work Schedule
+
+          .user-info
+            div
+              h3= user.name
+              p= user.role
+            img(src="/imgs/Beauty.png", alt="User")
+
+        hr
+
+        if schedules.length
+          table
+            thead
+              tr
+                if user.role === 'manager'
+                  th Attendant
+                th Type
+                th Products
+                th Date
+                th Time
+            tbody
+              each s in schedules
+                tr
+                  if user.role === 'manager'
+                    td= s.assignedAttendant
+                  td= s.type
+                  td= s.products
+                  td= new Date(s.date).toDateString()
+                  td= s.time
+        else
+          p No schedules available.

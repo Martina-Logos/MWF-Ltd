@@ -13,14 +13,6 @@ link(rel="stylesheet", href="/css/customer.css")
         a(href="/salesAgent")
           i.fas.fa-home
           |  Dashboard
-      li
-        a(href="/sales")
-          i.fas.fa-cash-register
-          |  Record Sale
-      li
-        a(href="/receipt")
-          i.fas.fa-receipt
-          |  Receipt
       li.active
         a(href="/customer")
           i.fas.fa-user-plus
@@ -33,9 +25,7 @@ link(rel="stylesheet", href="/css/customer.css")
         a(href="/invoice")
           i.fas.fa-file-invoice-dollar
           |  Invoices
-      //
-         <li><a href="#"><i class="fas fa-boxes"></i> Inventory Check</a></li>
-                        <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li> 
+
   //  Main Content 
   .main-content
     //  Header 
@@ -82,7 +72,7 @@ link(rel="stylesheet", href="/css/customer.css")
           .form-row
             .form-group
               label.required(for="companyName") Company Name
-              input#companyName(type="text", name="companyName", required, placeholder="e.g., BuildIT Constructions Ltd")
+              input#companyName(type="text", name="companyName", required)
             .form-group
               label.required(for="businessType") Business Type
               select#businessType(name="businessType", required)
@@ -108,17 +98,17 @@ link(rel="stylesheet", href="/css/customer.css")
           .form-row
             .form-group
               label.required(for="contactPerson") Primary Contact Person
-              input#contactPerson(type="text", name="contactPerson", required, placeholder="e.g., Robert Johnson")
+              input#contactPerson(type="text", name="contactPerson", required)
             .form-group
               label(for="contactTitle") Contact Title
-              input#contactTitle(type="text", name="contactTitle", placeholder="e.g., Procurement Manager")
+              input#contactTitle(type="text", name="contactTitle")
           .form-row
             .form-group
               label.required(for="phone") Phone Number
-              input#phone(type="tel", name="phone", required, placeholder="e.g., +1 (555) 123-4567")
+              input#phone(type="tel", name="phone", required)
             .form-group
               label(for="email") Email Address
-              input#email(type="email", name="email", placeholder="e.g., contact@company.com")
+              input#email(type="email", name="email")
         //  Address Information Section 
         .form-section
           h3
@@ -127,17 +117,17 @@ link(rel="stylesheet", href="/css/customer.css")
           .form-row
             .form-group
               label.required(for="streetAddress") Street Address
-              input#streetAddress(type="text", name="streetAddress", required, placeholder="e.g., 123 Construction Avenue")
+              input#streetAddress(type="text", name="streetAddress", required)
             .form-group
               label.required(for="city") City
-              input#city(type="text", name="city", required, placeholder="e.g., Buildington")
+              input#city(type="text", name="city", required)
           .form-row
             .form-group
               label(for="postalCode") Postal Code
-              input#postalCode(type="text", name="postalCode", placeholder="e.g., 90210")
+              input#postalCode(type="text", name="postalCode")
           .form-group
             label.required(for="country") Country
-            input#country(type="text", name="country", required, placeholder="e.g., United States")
+            input#country(type="text", name="country", required)
         //  Business Details Section 
         .form-section
           h3
@@ -153,10 +143,6 @@ link(rel="stylesheet", href="/css/customer.css")
                 option(value="net15") Net 15 Days
                 option(value="net30", selected) Net 30 Days
                 option(value="net60") Net 60 Days
-            .form-group
-              label(for="creditLimit") Credit Limit (shs)
-              input#creditLimit(type="number", name="creditLimit", step="0.01", min="0", placeholder="0.00")
-              p.form-hint Set a credit limit for this customer
           .form-group
             label(for="preferredProducts") Preferred Products/Categories
             select#preferredProducts(name="preferredProducts", multiple, style="height: 120px;")

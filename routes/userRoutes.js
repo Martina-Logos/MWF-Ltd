@@ -175,7 +175,7 @@ router.post("/signup", ensureAuthenticated, ensureManager, async (req, res) => {
 
 // Edit User
 // GET – Edit User Form
-router.get("/edit/:id", ensureAuthenticated, ensureManager, async (req, res) => {
+router.get("/user/edit/:id", ensureAuthenticated, ensureManager, async (req, res) => {
   try {
     const user = await UserModel.findById(req.params.id).lean();
     if (!user) return res.status(404).send("User not found");
@@ -188,11 +188,7 @@ router.get("/edit/:id", ensureAuthenticated, ensureManager, async (req, res) => 
 });
 
 
-router.post(
-  "/edit/:id",
-  ensureAuthenticated,
-  ensureManager,
-  async (req, res) => {
+router.post("/user/edit/:id", ensureAuthenticated, ensureManager, async (req, res) => {
     try {
       const userId = req.params.id;
 
@@ -224,11 +220,7 @@ router.post(
 
 // POST – Delete User
 // URL: /user/delete/:id
-router.post(
-  "/delete/:id",
-  ensureAuthenticated,
-  ensureManager,
-  async (req, res) => {
+router.post("/user/delete/:id", ensureAuthenticated, ensureManager, async (req, res) => {
     try {
       await UserModel.findByIdAndDelete(req.params.id);
       res.redirect("/user");

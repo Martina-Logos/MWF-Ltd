@@ -280,6 +280,17 @@ body {
   margin-top: 30px;
 }
 
+.error-message {
+  color: red;
+  font-size: 0.85rem;
+  margin-top: 3px;
+}
+input:invalid,
+select:invalid {
+  border-color: red;
+}
+
+
 /* Order Items Table */
 .order-items {
   width: 100%;

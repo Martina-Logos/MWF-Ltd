@@ -63,45 +63,6 @@ html
             h3= outOfStock || 0
             p Out of Stock
 
-        // Controls
-        .controls
-          .controls-header
-            h2 Stock Inventory
-            div
-              a.btn.btn-primary(href="/stock")
-                i.fas.fa-plus
-                | Add New Product
-
-          .filters
-            .search-box
-              input(type="text", placeholder="Search products by name, code, or supplier...")
-              button
-                i.fas.fa-search
-                | Search
-            .filter-group
-              label(for="categoryFilter") Product Type
-              select#categoryFilter
-                option(value) All Types
-                option(value="timber") Timber
-                option(value="poles") Poles
-                option(value="hardwood") Hardwood
-                option(value="softwood") Softwood
-                option(value="furniture") Furniture
-            .filter-group
-              label(for="statusFilter") Stock Status
-              select#statusFilter
-                option(value) All Status
-                option(value="in-stock") In Stock
-                option(value="low-stock") Low Stock
-                option(value="out-of-stock") Out of Stock
-            .filter-group
-              label(for="qualityFilter") Quality
-              select#qualityFilter
-                option(value) All Quality
-                option(value="premium") Premium
-                option(value="standard") Standard
-                option(value="economy") Economy
-
         // Stock Table
         .stock-table-container
           table.stock-table
@@ -116,24 +77,21 @@ html
                 th Quality
                 th Color
                 th Actions
-
-            - var stockItems = items || []  // safeguard if items is undefined
+            // safeguard if items is undefined
             tbody#stockTableBody
-              if stockItems.length
-                each item in stockItems
+              if items && items.length
+                each item in items
                   tr
-                    td= item.productName
-                    td= item.productType
-                    td= item.costPrice
-                    td= item.sellingPrice
-                    td= item.supplierName
-                    td= item.supplierContact
-                    td= item.quality
-                    td= item.color
+                    td #{item.productName}
+                    td #{item.productType}
+                    td #{item.costPrice}
+                    td #{item.sellingPrice}
+                    td #{item.supplierName}
+                    td #{item.supplierContact}
+                    td #{item.quality}
+                    td #{item.color}
                     td
                       a(href=`/stockList/edit/${item._id}`) Edit
                       |  |  
                       form(action=`/stockList/${item._id}?_method=DELETE`, method="POST", style="display:inline")
                         button(type="submit") Delete
-            
-

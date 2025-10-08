@@ -1,0 +1,107 @@
+doctype html
+html
+  head
+    title MWF Ltd - Dashboard
+    link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css")
+    link(rel="stylesheet", href="/css/attendant.css")
+  body
+    .container
+      // Sidebar
+      .sidebar
+        .logo
+          h2 Mayondo Wood & Furniture Ltd
+        ul.nav-links
+          if user.role === 'manager'
+            li
+              a(href="/manager")
+                i.fas.fa-home
+                | Dashboard
+            li
+              a(href="/schedule")
+                i.fas.fa-calendar-plus
+                | Create Schedule
+            li
+              a(href="/scheduleList" class="active")
+                i.fas.fa-table
+                | Schedule List
+            li
+              a(href="/stockList")
+                i.fas.fa-boxes
+                | Stock List
+          else if user.role === 'attendant'
+            li
+              a(href="/attendants" class="active")
+                i.fas.fa-home
+                | Dashboard
+            li
+              a(href="/scheduleList")
+                i.fas.fa-calendar-check
+                | My Schedule
+            li
+              a(href="/stockList")
+                i.fas.fa-boxes
+                | Stock List
+
+      // Main Content
+      .main-content
+        .header
+          h1 Welcome, #{user.name}
+          .user-info
+            div
+              h3= user.name
+              p= user.role
+            img(src="/imgs/attendant.jpg", alt="User")
+
+        hr
+
+        // Schedule List Card
+        .card
+          if user.role === 'manager'
+            h2 All Schedules
+          else
+            h2 My Schedule
+          
+          if schedules && schedules.length
+            table
+              thead
+                tr
+                  if user.role === 'manager'
+                    th Attendant
+                  th Type
+                  th Products
+                  th Date
+                  th Time
+              tbody
+                each s in schedules
+                  tr
+                    if user.role === 'manager'
+                      td(data-label="Attendant")= s.assignedAttendant
+                    td(data-label="Type")= s.type
+                    td(data-label="Products")= s.products
+                    td(data-label="Date")= new Date(s.date).toDateString()
+                    td(data-label="Time")= s.time
+          else
+            p No schedules available.
+
+        // Stock List Card
+        .card
+          h2 Available Stock
+          if stocks && stocks.length
+            table
+              thead
+                tr
+                  th Product
+                  th Type
+                  th Quantity
+                  th Cost Price
+                  th Selling Price
+              tbody
+                each stock in stocks
+                  tr
+                    td(data-label="Product")= stock.productName
+                    td(data-label="Type")= stock.productType
+                    td(data-label="Quantity")= stock.quantity
+                    td(data-label="Cost Price")= stock.costPrice
+                    td(data-label="Selling Price")= stock.sellingPrice
+          else
+            p No stock items available.

@@ -18,6 +18,7 @@ const Sales = require("./models/salesModel");
 const OrderStock = require("./models/orderStockModel");
 const Invoice = require("./models/invoiceModel");
 const Customer = require("./models/customerModel");
+const Schedule = require("./models/scheduleModel");
 
 // 3. Routes
 const authRoutes = require("./routes/authRoutes");
@@ -28,6 +29,8 @@ const invoiceRoutes = require("./routes/invoiceRoutes");
 const customerRoutes = require("./routes/customerRoutes");
 const userRoutes = require("./routes/userRoutes");
 const salesDashRoutes = require("./routes/salesDashRoutes");
+const scheduleRoutes = require("./routes/scheduleRoutes");
+const attendantsRoutes = require("./routes/attendantsRoutes");
 
 // 4. Instantiation
 const app = express();
@@ -96,6 +99,8 @@ app.use("/", invoiceRoutes);
 app.use("/", customerRoutes);
 app.use("/", userRoutes);
 app.use("/", salesDashRoutes);
+app.use("/", scheduleRoutes);
+app.use("/", attendantsRoutes);
 
 // 404 handler
 app.use((req, res) => {

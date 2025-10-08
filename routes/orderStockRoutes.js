@@ -58,19 +58,10 @@ router.post("/orderStock", ensureAuthenticated, ensureManager, async (req, res) 
         orderTotal,
       });
 
-      //   await newOrder.save();
-      //   console.log("Order saved successfully:", newOrder);
-
-      //   res.redirect("/orderStock"); // redirect back to form or success page
-      // } catch (err) {
-      //   console.error("Error saving order:", err);
-      //   res.status(500).send("Error saving order: " + err.message);
-      // }
-
       await newOrder.save();
 
       req.flash("success_msg", "Stock recorded successfully");
-      res.redirect("/orderStock");
+      res.redirect("/orderList");
     } catch (err) {
       console.error("Error saving stock:", err);
       req.flash("error_msg", "Failed to record stock. Please check inputs.");
@@ -79,16 +70,42 @@ router.post("/orderStock", ensureAuthenticated, ensureManager, async (req, res) 
   }
 );
 
-// (Optional) GET: View all orders
+// View all orders
 router.get("/orderList", ensureAuthenticated, ensureManager, async (req, res) => {
     try {
-      const orders = await OrderStock.find().sort({ createdAt: -1 });
-      res.render("orderList", { orders });
+      const { supplier, status, startDate, endDate } = req.query;
+
+      const filter = {};
+      if (supplier) filter.supplier = supplier;
+      if (status) filter.status = status;
+      if (startDate || endDate) filter.orderDate = {};
+      if (startDate) filter.orderDate.$gte = new Date(startDate);
+      if (endDate) filter.orderDate.$lte = new Date(endDate);
+
+      const orders = await OrderStock.find(filter).sort({ createdAt: -1 });
+
+      res.render("orderList", { orders, filters: req.query });
     } catch (err) {
       console.error("Error fetching orders:", err);
       res.status(500).send("Error fetching orders");
     }
   }
 );
+
+// 4. GET: View single order details
+router.get("/order/:id", ensureAuthenticated, ensureManager, async (req, res) => {
+  try {
+    const order = await OrderStock.findById(req.params.id);
+    if (!order) {
+      req.flash("error_msg", "Order not found");
+      return res.redirect("/orderList");
+    }
+    res.render("orderDetails", { order });
+  } catch (err) {
+    console.error("Error fetching order:", err);
+    req.flash("error_msg", "Failed to fetch order details");
+    res.redirect("/orderList");
+  }
+});
 
 module.exports = router;

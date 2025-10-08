@@ -1,33 +1,30 @@
 :root {
   --primary: #565819;
-  --secondary: #1abc9c;
+  --secondary: #3498db;
   --accent: #e67e22;
   --light: #ecf0f1;
-  --dark: #2c3e50;
+  --dark: #565819;
   --success: #27ae60;
   --warning: #f39c12;
   --danger: #e74c3c;
   --gray: #95a5a6;
-  --table-header-bg: var(--secondary);
-  --table-row-hover: #dfe6e9;
+  --table-header-bg: #f5f5f5;
 }
 
-/* ============================= 
-   Reset & Base */
+/* Reset */
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
-  background-color: var(--light);
-  color: var(--dark);
+  background-color: #f5f7f9;
+  color: #333;
 }
 
-/* ============================= 
-   Layout */
+/* Container */
 .container {
   display: flex;
   min-height: 100vh;
@@ -36,9 +33,9 @@ body {
 /* Sidebar */
 .sidebar {
   width: 250px;
-  background-color: var(--primary);
-  color: #fff;
-  padding: 20px;
+  background: var(--primary);
+  color: white;
+  padding: 20px 0;
   position: fixed;
   top: 0;
   left: 0;
@@ -46,52 +43,62 @@ body {
   overflow-y: auto;
 }
 
-.sidebar .logo {
+.logo {
   text-align: center;
-  margin-bottom: 30px;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
 }
 
-.sidebar .logo h2 {
-  color: #fff;
+.logo h2 {
   font-size: 22px;
+  color: white;
 }
 
-.sidebar ul.nav-links {
+.nav-links {
   list-style: none;
+  padding: 0;
 }
 
-.sidebar ul.nav-links li {
-  margin: 20px 0;
+.nav-links li {
+  padding: 15px 20px;
+  border-left: 4px solid transparent;
 }
 
-.sidebar ul.nav-links li a {
-  color: #fff;
+.nav-links li:hover,
+.nav-links li.active {
+  background: rgba(255, 255, 255, 0.1);
+  border-left: 4px solid var(--accent);
+}
+
+.nav-links a {
+  color: white;
   text-decoration: none;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 15px;
 }
 
-.sidebar ul.nav-links li a:hover,
-.sidebar ul.nav-links li.active a {
-  color: var(--secondary);
+.nav-links i {
+  font-size: 18px;
 }
 
-/* ============================= 
-   Main Content */
+/* Main content */
 .main-content {
   margin-left: 250px;
   flex: 1;
-  padding: 30px;
+  padding: 20px;
+  overflow-y: auto;
   background-color: var(--light);
 }
 
-/* Header */
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 25px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #ddd;
 }
 
 .header h1 {
@@ -105,91 +112,96 @@ body {
   gap: 15px;
 }
 
-.user-info div h3 {
-  font-size: 16px;
-  color: var(--dark);
-}
-
-.user-info div p {
-  font-size: 14px;
-  color: var(--gray);
-}
-
 .user-info img {
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid var(--secondary);
 }
 
-/* ============================= 
-   Table Styles */
-table {
-  width: 100%;
-  border-collapse: collapse;
+/* Table */
+.invoice-table {
+  overflow-x: auto;
   margin-top: 20px;
-  background-color: #fff;
-  border-radius: 6px;
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
-thead {
+.invoice-table table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.invoice-table th,
+.invoice-table td {
+  padding: 12px 15px;
+  text-align: left;
+}
+
+.invoice-table thead {
   background-color: var(--table-header-bg);
 }
 
-thead th {
-  color: #fff;
-  padding: 12px 15px;
-  text-align: left;
+.invoice-table thead th {
   font-weight: 600;
+  color: var(--dark);
 }
 
-tbody td {
-  padding: 12px 15px;
-  border-bottom: 1px solid #ddd;
+.invoice-table tbody tr {
+  border-bottom: 1px solid #eee;
+  transition: background 0.2s;
 }
 
-tbody tr:hover {
-  background-color: var(--table-row-hover);
-  transition: 0.2s;
+.invoice-table tbody tr:hover {
+  background-color: #f0f0f0;
 }
 
-/* ============================= 
-   Buttons */
-button.btn, .btn {
+/* Buttons */
+.btn {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 6px 12px;
-  border-radius: 4px;
+  gap: 5px;
+  padding: 5px 10px;
   border: none;
+  border-radius: 4px;
   cursor: pointer;
   font-size: 14px;
   text-decoration: none;
 }
 
-.btn-edit, .btn-primary {
+.btn-edit {
   background-color: var(--secondary);
-  color: #fff;
+  color: white;
 }
 
-.btn-edit:hover, .btn-primary:hover {
-  background-color: #16a085;
+.btn-edit:hover {
+  background-color: #217dbb;
 }
 
 .btn-delete {
   background-color: var(--danger);
-  color: #fff;
+  color: white;
 }
 
 .btn-delete:hover {
   background-color: #c0392b;
 }
 
-/* ============================= 
-   Empty State */
+.btn-primary {
+  background-color: var(--accent);
+  color: white;
+  padding: 8px 15px;
+  border-radius: 5px;
+}
+
+.btn-primary:hover {
+  background-color: #d46b1f;
+}
+
+/* Empty state */
 .empty-state {
   display: flex;
   flex-direction: column;
@@ -201,7 +213,6 @@ button.btn, .btn {
 }
 
 .empty-state i {
-  font-size: 3rem;
   margin-bottom: 15px;
 }
 

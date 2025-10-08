@@ -77,11 +77,6 @@ const customerSchema = new mongoose.Schema(
       required: [true, "Payment terms are required"],
       enum: ["cod", "net7", "net15", "net30", "net60"],
     },
-    creditLimit: {
-      type: Number,
-      default: 0,
-      min: [0, "Credit limit cannot be negative"],
-    },
     preferredProducts: {
       type: [String], // multiple selection allowed
       default: [],
